@@ -11,6 +11,12 @@ I need to be able to list it
 ```
 
 ```
+As a potential guest
+So that I find somewhere to stay
+I need to be able to view all listings
+```
+
+```
 As a host
 So that I maximise revenue
 I need to be able to list more than one space
