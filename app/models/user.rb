@@ -3,8 +3,8 @@ require 'dm-validations'
 
 class User
   include DataMapper::Resource
-  proper :id, Serial
-  proper :username, String,
+  property :id, Serial
+  property :username, String,
       :required => true,
       :unique => true,
     :messages => {
