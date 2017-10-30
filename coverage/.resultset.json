@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jon/Projects/Week 6/Air B&B/spec/infrastructure_spec.rb": [
+      "/Users/lucyborthwick/Desktop/Projects/Makers-Academy/week-6/airbnb/spec/infrastructure_spec.rb": [
         1,
         1,
         1,
@@ -11,6 +11,6 @@
         null
       ]
     },
-    "timestamp": 1509380376
+    "timestamp": 1509383364
   }
 }
