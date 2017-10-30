@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jon/Projects/Week 6/Air B&B/spec/infrastructure_spec.rb": [
+      "/Users/aramsimonian/git_collaboration/airbnb/spec/infrastructure_spec.rb": [
         1,
         1,
         1,
@@ -9,8 +9,17 @@
         1,
         null,
         null
+      ],
+      "/Users/aramsimonian/git_collaboration/airbnb/spec/models/user_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
       ]
     },
-    "timestamp": 1509380376
+    "timestamp": 1509385399
   }
 }
