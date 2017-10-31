@@ -10,8 +10,6 @@ require "./app/app.rb"
 require "web_helper"
 require_relative '../app/models/user'
 
-require_relative '../spec/models/web_helpers.rb'
-
 Capybara.app = MakersBnb
 
 RSpec.configure do |config|
