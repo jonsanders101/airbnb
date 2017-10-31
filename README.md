@@ -3,6 +3,7 @@
 Our task is to make a clone of Air B'n'B.
 
 ## Authors
+
 * Canace Wong
 * Lucy Borthwick
 * Aram Simonian
