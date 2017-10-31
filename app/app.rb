@@ -2,16 +2,18 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
+require 'sinatra/partial'
 
 include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Partial
 
   get "/" do
     # TODO: remove next line
     "Test"
-    erb :homepage
+    erb :homepage, :layout => :layout
   end
 
   get "/spaces/new" do
@@ -36,6 +38,8 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-  run! if app_file == $0
+  set :partial_template_engine, :erb
+  enable :partial_underscores
 
+  run! if app_file == $0
 end
