@@ -8,14 +8,6 @@ include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
-<<<<<<< HEAD
-  register Sinatra::Partial
-
-  get "/" do
-    # TODO: remove next line
-    "Test"
-    erb :homepage, :layout => :layout
-=======
   enable :sessions
   set :session_secret, 'super secret'
 
@@ -27,7 +19,6 @@ class MakersBnb < Sinatra::Base
 
   get '/' do
     erb :homepage
->>>>>>> working-branch
   end
 
   post '/users' do
@@ -64,11 +55,8 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-<<<<<<< HEAD
   set :partial_template_engine, :erb
   enable :partial_underscores
 
-=======
->>>>>>> working-branch
   run! if app_file == $0
 end
