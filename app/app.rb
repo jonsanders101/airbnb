@@ -47,13 +47,11 @@ class MakersBnb < Sinatra::Base
 
   post "/booking" do
     space = Space.first(name: params[:'spaces'])
-    p space
     booking = Booking.create(guest_id: session[:user_id],
                               space_id: (Space.first(name: params[:'spaces'])).id,
                               date: params[:'booking-date'])
     space.bookings << booking
     space.save
-    p space.bookings
     redirect "/booking/successful" if booking
   end
 
