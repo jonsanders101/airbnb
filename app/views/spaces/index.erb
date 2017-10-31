@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Makers BnB </title>
-  </head>
+<h1> All available properties </h1>
+<ul id="spaces_container">
+  <% spaces.each do |space| %>
+    <li>
+      <div class="space_container">
+        <p><%= space.name %></p>
+        <p><%= space.description %></p>
+        <p>£<%= space.price %> per night</p>
+      </div>
+    </li>
+  <% end %>
+</ul>
 
-  <body>
-    <h1> All available properties </h1>
-    <ul id="spaces_container">
-      <% spaces.each do |space| %>
-        <li>
-          <div class="space_container">
-            <p><%= space.name %></p>
-            <p><%= space.description %></p>
-            <p>£<%= space.price %> per night</p>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <h2>Request a Booking</h2>
-    <form id="booking-request" action="/booking" method="post">
-      <% spaces.each do |space| %>
-        <select name="spaces">
-          <option name="space-name"><%= space.name %></option>
-        </select>
-      <% end %>
-      <input type="date" name="booking-date">
-      <input type="submit" Value="Request Booking">
-    </form>
-  </body>
+
+<h2>Request a Booking</h2>
+<form id="booking-request" action="/booking" method="post">
+  <% spaces.each do |space| %>
+    <select name="spaces">
+      <option name="space-name"><%= space.name %></option>
+    </select>
+  <% end %>
+  <input type="date" name="booking-date">
+  <input type="submit" Value="Request Booking">
+</form>
