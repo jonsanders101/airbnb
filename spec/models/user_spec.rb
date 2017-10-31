@@ -19,5 +19,9 @@ feature 'Signing up for a user account' do
     expect { sign_up(password_confirmation: "wrong")}.not_to change(User, :count)
   end
 
+  scenario 'users count should go up by 1 following successful sign-up' do
+    expect { sign_up }.to change(User, :count).by(1)
+  end
+
 
 end
