@@ -36,12 +36,22 @@ class MakersBnb < Sinatra::Base
     erb :'spaces/new'
   end
 
-  post '/all_spaces' do
-    redirect '/all_spaces'
+  post "/spaces" do
+    space = Space.create(name: params[:space],
+                        host_id: session[:user_id],
+                        description: params[:description],
+                        price: params[:price])
+    redirect "/spaces"
   end
 
-  get '/all_spaces' do
-    erb :'spaces/all_spaces'
+  get "/spaces" do
+    erb :'spaces/index'
+  end
+
+  helpers do
+    def spaces
+      @spaces ||= Space.all
+    end
   end
 
   run! if app_file == $0

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Makers BnB </title>
+  </head>
+
+  <body>
+    <h1> All available properties </h1>
+    <ul id="spaces_container">
+      <% spaces.each do |space| %>
+        <li>
+          <div class="space_container">
+            <p><%= space.name %></p>
+            <p><%= space.description %></p>
+            <p>£<%= space.price %> per night</p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </body>

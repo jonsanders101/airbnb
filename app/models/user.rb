@@ -16,6 +16,8 @@ class User
             }
   property  :password_digest, Text
 
+  has n, :spaces, :through => Resource
+
   attr_accessor :password_confirmation
   attr_reader   :password
 
