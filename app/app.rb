@@ -7,6 +7,14 @@ include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+  enable :sessions
+  set :session_secret, 'super secret'
+
+helpers do
+  def current_user
+    @current_user ||= User.get(session[:user_id])
+  end 
+end
 
 get "/" do
   erb :homepage
@@ -16,6 +24,7 @@ post "/users" do
   user = User.create(username: params[:username],
               password: params[:password],
               password_confirmation: params[:password_confirmation])
+    session[:user_id] = user.id
   redirect "/"
 end
 

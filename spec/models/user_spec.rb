@@ -23,5 +23,11 @@ feature 'Signing up for a user account' do
     expect { sign_up }.to change(User, :count).by(1)
   end
 
+  scenario 'username should appear on homepage following successful sign-up' do
+    sign_up
+    expect(current_path).to eq("/")
+    expect(page).to have_content("Welcome, Test user")
+  end
+
 
 end
