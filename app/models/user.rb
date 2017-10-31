@@ -15,6 +15,7 @@ class User
               :is_unique => 'We already have that username.'
             }
   property  :password_digest, Text
+  property  :email, String
 
   has n, :spaces, :through => Resource
 
