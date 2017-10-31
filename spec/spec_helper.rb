@@ -22,6 +22,22 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(:suite) do
+    include DataMapperSetup
+    data_mapper_setup
+
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
