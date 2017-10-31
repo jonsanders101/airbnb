@@ -1,6 +1,6 @@
 def sign_up(username: 'Test user',
             email: 'test@test.com',
-            phone_number: '07496950977',
+            phone_number: '07496950988',
             password: 'Test password',
             password_confirmation: 'Test password')
   visit '/sign-up'
