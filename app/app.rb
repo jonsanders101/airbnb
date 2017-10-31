@@ -14,7 +14,7 @@ end
 
 post "/users" do
   user = User.create(username: params[:username],
-              password: params[:password])
+              password: params[:password], password_confirmation: params[:password_confirmation])
   redirect "/"
 end
 
