@@ -8,5 +8,4 @@ class Space
   property :description, String
   property :price, Integer
   property :host_id, Integer
-  
 end
