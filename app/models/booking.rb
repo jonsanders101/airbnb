@@ -10,5 +10,4 @@ class Booking
   property :space_id, Integer
   property :confirmed, Boolean, default: false
   property :date, Date
-
 end

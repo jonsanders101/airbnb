@@ -2,19 +2,34 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
+require 'sinatra/partial'
 
 include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Partial
 
-  get "/" do
-    # TODO: remove next line
-    "Test"
+  enable :sessions
+  set :session_secret, 'super secret'
+
+  get '/' do
     erb :homepage
   end
 
-  get "/spaces/new" do
+  post '/users' do
+    user = User.create(username: params[:username],
+                       password: params[:password],
+                       password_confirmation: params[:password_confirmation])
+    session[:user_id] = user.id
+    redirect '/'
+  end
+
+  get '/sign-up' do
+    erb :'users/sign_up'
+  end
+
+  get '/spaces/new' do
     erb :'spaces/new'
   end
 
@@ -42,11 +57,17 @@ class MakersBnb < Sinatra::Base
   end
 
   helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+
     def spaces
       @spaces ||= Space.all
     end
   end
 
-  run! if app_file == $0
+  set :partial_template_engine, :erb
+  enable :partial_underscores
 
+  run! if app_file == $0
 end
