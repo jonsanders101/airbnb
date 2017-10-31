@@ -2,11 +2,13 @@ require 'data_mapper'
 require 'dm-validations'
 
 class Space
+
   include DataMapper::Resource
+
   property :id, Serial
-  property :name, Text
-  property :description, String
+  property :name, String
+  property :description, Text
   property :price, Integer
-  property :host_id, Integer
-  
+  property :host_id, Integer  
+
 end
