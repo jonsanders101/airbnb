@@ -1,3 +1,26 @@
+# Makers BnB
+
+Our task is to make a clone of Air B'n'B.
+
+## Authors
+* Canace Wong
+* Lucy Borthwick
+* Aram Simonian
+* Ed Lowther
+* David Halewood
+* Jon Sanders
+
+## Technologies Used
+
+* Front-end: HTML, CSS
+* Server-side: Ruby, Sinatra
+* Database: PostgreSQL
+* ORM: DataMapper
+
+## User Stories
+
+### MVP
+
 ```
 As a user
 So that I can use Makers bnb
