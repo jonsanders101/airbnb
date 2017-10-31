@@ -9,7 +9,7 @@ feature "When I request a booking" do
 
     scenario "my request is stored in the booking table" do
       sign_up
-      click_button('book-trip')
+      click_button("Book a trip!")
       expect(current_path).to eq('/spaces')
       expect(page).to have_css("form#booking-request")
       within("form#booking-request") do
