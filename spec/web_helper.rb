@@ -8,7 +8,7 @@ def sign_up(username: 'Test user',
   click_button 'Sign up'
 end
 
-def post_listing
+def post_listing(space = 'test space', description = 'test description', price = 1000)
   click_button("list-space")
   within("//form[@id='listing_form']") do
     fill_in "space", :with => 'test space'
