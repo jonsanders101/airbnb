@@ -7,7 +7,15 @@ feature "When I create a listing" do
 
     scenario "I can add a listing" do
       expect { post_listing }.to change(Space, :count).by(1)
-      expect(current_path).to eq "/all_spaces"
+    end
+
+    scenario "Adding a listing displays its name, description and price" do
+      post_listing
+      within("ul#spaces_container") do
+        expect(page).to have_content "test space"
+        expect(page).to have_content "test description"
+        expect(page).to have_content "1000"
+      end
     end
 
     scenario "I can add multiple listings" do
