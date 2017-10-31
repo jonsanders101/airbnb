@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/lucyborthwick/Desktop/Projects/Makers-Academy/week-6/airbnb/spec/features/list_spec.rb": [
+      "/Users/davidhalewood/Documents/Makers/Projects/airbnb/spec/features/list_spec.rb": [
         1,
         null,
         1,
@@ -10,28 +10,28 @@
         null,
         null,
         1,
-        2,
+        0,
         null,
         null,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
         null,
         1,
-        1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
         null
       ],
-      "/Users/lucyborthwick/Desktop/Projects/Makers-Academy/week-6/airbnb/spec/models/models_implementation_spec.rb": [
+      "/Users/davidhalewood/Documents/Makers/Projects/airbnb/spec/models/models_implementation_spec.rb": [
         1,
         1,
         1,
@@ -64,7 +64,7 @@
         null,
         null
       ],
-      "/Users/lucyborthwick/Desktop/Projects/Makers-Academy/week-6/airbnb/spec/models/user_spec.rb": [
+      "/Users/davidhalewood/Documents/Makers/Projects/airbnb/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -78,26 +78,26 @@
         1,
         1,
         1,
-        1,
+        0,
         null,
         null,
         1,
+        1,
+        0,
+        null,
+        null,
         1,
         2,
         null,
         null,
         1,
-        2,
-        null,
-        null,
         1,
-        1,
-        1,
-        1,
+        0,
+        0,
         null,
         null
       ]
     },
-    "timestamp": 1509461569
+    "timestamp": 1509464293
   }
 }

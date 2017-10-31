@@ -8,14 +8,10 @@ include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Partial
+
   enable :sessions
   set :session_secret, 'super secret'
-
-  helpers do
-    def current_user
-      @current_user ||= User.get(session[:user_id])
-    end
-  end
 
   get '/' do
     erb :homepage
@@ -50,6 +46,10 @@ class MakersBnb < Sinatra::Base
   end
 
   helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+
     def spaces
       @spaces ||= Space.all
     end
