@@ -1,4 +1,5 @@
 require 'data_mapper'
+require 'dm-postgres-adapter'
 require 'dm-validations'
 
 class User
@@ -11,4 +12,5 @@ class User
       :presence => "We need your username.",
       :is_unique => "We already have that username."
     }
+  property :password, String
 end

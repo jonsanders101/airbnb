@@ -9,8 +9,17 @@ data_mapper_setup
 class MakersBnb < Sinatra::Base
 
 get "/" do
-  "Test"
   erb :homepage
+end
+
+post "/users" do
+  user = User.create(username: params[:username],
+              password: params[:password])
+  redirect "/"
+end
+
+get "/sign-up" do
+  erb :'users/sign_up'
 end
 
 get "/spaces/new" do
