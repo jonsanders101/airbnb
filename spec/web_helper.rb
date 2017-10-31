@@ -1,10 +1,12 @@
 def sign_up(username: 'Test user',
             email: 'test@test.com',
+            phone_number: '07496950977',
             password: 'Test password',
             password_confirmation: 'Test password')
   visit '/sign-up'
   fill_in :username, with: username
   fill_in :email, with: email
+  fill_in :phone_number, with: phone_number
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
   click_button 'Sign up'

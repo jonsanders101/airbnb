@@ -16,6 +16,7 @@ class User
             }
   property  :password_digest, Text
   property  :email, String
+  property  :phone_number, String, :length => 30
 
   has n, :spaces, :through => Resource
 
