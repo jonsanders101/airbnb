@@ -47,14 +47,22 @@ class MakersBnb < Sinatra::Base
   end
 
   post "/booking" do
+    space = Space.first(name: params[:'spaces'])
     booking = Booking.create(guest_id: session[:user_id],
                               space_id: (Space.first(name: params[:'spaces'])).id,
                               date: params[:'booking-date'])
+    space.bookings << booking
+    space.save
     redirect "/booking/successful" if booking
   end
 
   get "/booking/successful" do
     erb :'booking/successful'
+  end
+
+  get "/spaces/:id" do
+    @space = Space.get(params['id'])
+    erb :'spaces/space'
   end
 
   helpers do
