@@ -7,12 +7,11 @@
   <body>
     <h1> List your space on Makers BnB!</h1>
 
-    <form action="/all_spaces" method="post">
-      Host name: <input type="text" name="host"><br></br>
+    <form id="listing_form" action="/all_spaces" method="post">
       Space name: <input type="text" name="space"><br></br>
       Description: <input type="text" name="description"><br></br>
-      Price: <input type="text" name="price"><br></br>
-      <input type="submit" value="Complete listing">
+      Price: <input type="number" class="currency" name="price"><br></br>
+      <input id="complete-listing" type="submit" value="Complete listing">
     </form>
 
   </body>
