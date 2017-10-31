@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   <%= erb :head %>
   <body>
     <%= partial :header %>
     <%= yield %>
+=======
+
+  <head>
+    <title> Makers BnB </title>
+  </head>
+
+  <body>
+    <% if current_user %>
+      Welcome, <%= current_user.username %>
+    <% end %>
+    <%= yield %>
+
+>>>>>>> working-branch
   </body>
 </html>
