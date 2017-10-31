@@ -56,6 +56,11 @@ class MakersBnb < Sinatra::Base
     erb :'booking/successful'
   end
 
+  get "/spaces/:id" do
+    @space = Space.get(params['id'])
+    erb :'spaces/space'
+  end
+
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
