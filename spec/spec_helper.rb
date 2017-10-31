@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require "simplecov"
 require "simplecov-console"
 
@@ -8,6 +10,7 @@ require 'data_mapper'
 require 'database_cleaner'
 
 require "./app/app.rb"
+require "web_helper"
 
 Capybara.app = MakersBnb
 
@@ -36,22 +39,21 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-# TODO: to be uncommented once we're ready for regular testing
-  # config.before(:suite) do
-  #   include DataMapperSetup
-  #   data_mapper_setup
-  #
-  #   DatabaseCleaner.strategy = :transaction
-  #   DatabaseCleaner.clean_with(:truncation)
-  # end
-  #
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
-  #
-  # config.after(:each) do
-  #   DatabaseCleaner.clean
-  # end
+  config.before(:suite) do
+    include DataMapperSetup
+    data_mapper_setup
+
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
