@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <title> Makers BnB </title>
-  </head>
-
+  <%= erb :head %>
   <body>
-    <% if current_user %>
-      Welcome, <%= current_user.username %>
-    <% end %>
+    <%= partial :welcome %>
+    <%= partial :header %>
     <%= yield %>
-
   </body>
 </html>

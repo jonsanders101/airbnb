@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <title> Makers BnB </title>
-    <link rel="stylesheet" href="/homepage.css"/>
-  </head>
-
-  <body>
-    <h1 id="header"> Welcome to Makers BnB!</h1>
-    <form action="/sign-up" method="get">
-      <input type="submit" value="Sign up">
-    </form>
-    <form id="button" action="/spaces/new" method="get">
-      <input id="list-space" type="submit" value="List a new space!">
-    </form>
-    <br>
-    <form id="button" action="/spaces/all_spaces" method="get">
-      <input id="book-trip" type="submit" value="Book a trip!">
-    </form>
-  </body>
-</html>
+<body>
+  <div id='home-container'>
+  <form id="button" action="/spaces/new" method="get">
+    <input id="list-space" type="submit" value="List a new space!">
+  </form>
+  <br>
+  <form id="button" action="/spaces/all_spaces" method="get">
+    <input id="book-trip" type="submit" value="Book a trip!">
+  </form>
+  </div>
+</body>

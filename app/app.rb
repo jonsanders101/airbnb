@@ -2,19 +2,16 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
+require 'sinatra/partial'
 
 include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+  register Sinatra::Partial
+
   enable :sessions
   set :session_secret, 'super secret'
-
-  helpers do
-    def current_user
-      @current_user ||= User.get(session[:user_id])
-    end
-  end
 
   get '/' do
     erb :homepage
@@ -49,10 +46,17 @@ class MakersBnb < Sinatra::Base
   end
 
   helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+
     def spaces
       @spaces ||= Space.all
     end
   end
+
+  set :partial_template_engine, :erb
+  enable :partial_underscores
 
   run! if app_file == $0
 end
