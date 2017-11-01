@@ -20,7 +20,8 @@ feature "When I create a listing" do
 
     scenario "I can add multiple listings" do
       post_listing
-      sign_up
+      visit '/'
+      # sign_up
       post_listing
       expect(Space.count).to eq 2
     end

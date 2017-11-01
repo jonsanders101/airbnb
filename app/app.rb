@@ -43,10 +43,17 @@ end
   post '/users' do
     user = User.create(username: params[:username],
                        email: params[:email],
+                       phone_number: params[:phone_number],
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
-    session[:user_id] = user.id
-    redirect '/'
+    if user.save
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      flash.now[:errors] = user.errors.full_messages
+      erb :'users/sign_up'
+    end
+    # params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
 
   get '/sign-up' do

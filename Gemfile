@@ -2,11 +2,12 @@ source "https://rubygems.org"
 
 ruby "2.4.2"
 
-gem "data_mapper"
-gem "dm-postgres-adapter"
-gem "sinatra"
-gem 'sinatra-partial'
+gem 'bcrypt'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
+gem 'sinatra'
 gem 'sinatra-flash'
+gem 'sinatra-partial'
 
 group :test do
   gem 'capybara'
