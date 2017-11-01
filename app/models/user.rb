@@ -7,16 +7,11 @@ class User
   include DataMapper::Resource
 
   property  :id, Serial
-  property  :username, String,
-            :required => true,
-            :unique => true,
-            :messages => {
-              :presence => 'We need your username.',
-              :is_unique => 'We already have that username.'
-            }
+  property  :username, String, :required => true, :unique => true,
+            :messages => { :is_unique => 'We already have that username.' }
   property  :password_digest, Text
-  property  :email, String
-  property  :phone_number, String, :length => 30
+  property  :email, String, format: :email_address, :required => true, :unique => true
+  property  :phone_number, String, :length => 30, :required => true
 
   has n, :spaces, :through => Resource
 
@@ -28,5 +23,15 @@ class User
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def self.authenticate(email, password)
+    user = first(email: email)
+
+    if user && BCrypt::Password.new(user.password_digest) == password
+      user
+    else
+      nil
+    end
   end
 end
