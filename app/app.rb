@@ -20,6 +20,7 @@ class MakersBnb < Sinatra::Base
   post '/users' do
     user = User.create(username: params[:username],
                        email: params[:email],
+                       phone_number: params[:phone_number],
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id

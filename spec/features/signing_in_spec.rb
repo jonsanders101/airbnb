@@ -31,8 +31,12 @@ feature 'Signing in' do
     expect { second_user_sign_up(email: "test@test.com") }.not_to change(User, :count)
   end
 
-  scenario 'checks that an email wad provided' do
+  scenario 'checks that an email was provided' do
     expect { sign_up(email: nil) }.not_to change(User, :count)
+  end
+
+  scenario 'checks that phone number is in correct format' do
+    expect { sign_up(phone_number: nil) }.not_to change(User, :count)
   end
 
   scenario 'username should appear on homepage following successful sign-up' do
