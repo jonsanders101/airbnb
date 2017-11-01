@@ -9,6 +9,15 @@ feature 'Signing in' do
     expect { sign_up(password_confirmation: "wrong")}.not_to change(User, :count)
   end
 
+  scenario 'checks that a username is entered' do
+    expect { sign_up(username: nil) }.to_not change(User, :count)
+  end
+
+  scenario 'checks that a unique username is entered' do
+    sign_up
+    expect { second_user_sign_up(username: "Test user") }.not_to change(User, :count)
+  end
+
   scenario 'users count should go up by 1 following successful sign-up' do
     expect { sign_up }.to change(User, :count).by(1)
   end
