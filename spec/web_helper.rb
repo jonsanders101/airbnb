@@ -6,7 +6,6 @@ def sign_up(username: 'Test user',
   visit '/sign-up'
   fill_in :username, with: username
   fill_in :email, with: email
-  fill_in :phone_number, with: phone_number
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
   click_button 'Sign up'
@@ -20,7 +19,6 @@ def second_user_sign_up(username: 'Second user',
   visit '/sign-up'
   fill_in :username, with: username
   fill_in :email, with: email
-  fill_in :phone_number, with: phone_number
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
   click_button 'Sign up'

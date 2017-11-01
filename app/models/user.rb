@@ -11,7 +11,7 @@ class User
             :messages => { :is_unique => 'We already have that username.' }
   property  :password_digest, Text
   property  :email, String, format: :email_address, :required => true, :unique => true
-  property  :phone_number, String, :length => 30, :required => true
+  property  :phone_number, String, :length => 30
 
   has n, :spaces, :through => Resource
 
