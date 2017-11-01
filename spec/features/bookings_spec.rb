@@ -17,7 +17,7 @@ feature "Making a booking" do
     space.bookings << booking_1
     space.bookings << booking_2
     space.save
-    visit '/spaces/1'
+    visit '/spaces/' + space.id.to_s
     expected_message_1 = "reserved on #{Date.today.strftime("%d/%m/%Y")}"
     expected_message_2 = "reserved on #{(Date.today + 3).strftime("%d/%m/%Y")}"
     within('.reservations_list') do

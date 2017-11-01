@@ -37,3 +37,16 @@ def post_listing(space = 'test space', description = 'test description', price =
     click_button("complete-listing")
   end
 end
+
+def create_space
+  Space.create(name: 'test space',
+              description: 'test description',
+              price: 500,
+              host_id: 1)
+end
+
+def create_booking
+  Booking.create(guest_id: 1,
+                space_id: 1,
+                date: Date.today)
+end
