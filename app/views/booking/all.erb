@@ -8,11 +8,13 @@
     <h1> Confirm requests for your spaces on Makers BnB!</h1>
 
     <form id="my-bookings" name="my-bookings" action="/booking/confirm" method="post">
-      <!-- <%= @my_spaces[1]['name'] %> -->
-      <% @my_requests.each do |request|%>
+
+      <% @my_requests.each do |request_id, request|%>
       <label>
-        <%= @my_spaces[1]['name'] %></label>
-      <input id="approve-request-1" type="submit" value="Approve request">
+        <%= @my_spaces[request['space_id']] %>
+        <%= @my_guests[request['guest_id']] %>
+        <%= request['date'] %></label>
+      <input id="approve-request-<%= request['id'] %>" type="submit" value="Approve request">
       <br>
       <% end %>
     </form>
