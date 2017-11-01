@@ -8,6 +8,7 @@
     <h1> Confirm requests for your spaces on Makers BnB!</h1>
 
     <form id="my-bookings" name="my-bookings" action="/booking/confirm" method="post">
+      <!-- <%= @my_spaces[1]['name'] %> -->
       <% @my_requests.each do |request|%>
       <label>
         <%= @my_spaces[1]['name'] %></label>
