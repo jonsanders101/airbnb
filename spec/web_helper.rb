@@ -9,7 +9,9 @@ def sign_up(username: 'Test user',
   fill_in :phone_number, with: phone_number
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
-  click_button 'Sign up'
+  within(:css, "form#signup-form") do
+    click_button 'Sign up'
+  end
 end
 
 def post_listing(space = 'test space', description = 'test description', price = 1000)

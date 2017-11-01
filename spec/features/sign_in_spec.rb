@@ -21,7 +21,9 @@ feature "When I sign-in" do
       expect(page).to have_current_path "/sessions/new"
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      click_button('Sign in')
+      within(:css, "form#signin-form") do
+        click_button('Sign in')
+      end
       expect(page).to have_current_path "/"
       expect(page).to have_content "Welcome, testusername"
     end
