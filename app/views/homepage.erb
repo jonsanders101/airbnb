@@ -17,5 +17,10 @@
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Sign out">
   </form>
+  <% if current_user %>
+    <form method="get" action="/users/<%= current_user.id %>">
+      <input type="submit" value="My Account">
+    </form>
+  <% end %>
   </div>
 </body>

@@ -95,6 +95,14 @@ end
     erb :'spaces/space'
   end
 
+  get "/users/:id" do
+    erb :'users/account'
+  end
+
+  get "/users/phone/new" do
+    "Hi"
+  end
+
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
