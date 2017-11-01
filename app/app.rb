@@ -3,12 +3,14 @@ ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require 'sinatra/partial'
+require 'sinatra/flash'
 
 include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
   register Sinatra::Partial
+  register Sinatra::Flash
 
   enable :sessions
   set :session_secret, 'super secret'
@@ -23,8 +25,15 @@ class MakersBnb < Sinatra::Base
                        phone_number: params[:phone_number],
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
-    session[:user_id] = user.id
-    redirect '/'
+    # if user.save
+    #   p 1
+      session[:user_id] = user.id
+      redirect '/'
+    # else
+    #   p 2
+    #   flash.now[:errors] = user.errors.full_messages
+    #   erb :'users/sign_up'
+    # end
   end
 
   get '/sign-up' do

@@ -35,7 +35,7 @@ feature 'Signing in' do
     expect { sign_up(email: nil) }.not_to change(User, :count)
   end
 
-  scenario 'checks that phone number is in correct format' do
+  scenario 'checks that phone number is provided' do
     expect { sign_up(phone_number: nil) }.not_to change(User, :count)
   end
 
