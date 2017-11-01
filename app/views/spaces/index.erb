@@ -14,11 +14,11 @@
 
 <h2>Request a Booking</h2>
 <form id="booking-request" action="/booking" method="post">
-  <% spaces.each do |space| %>
-    <select name="spaces">
-      <option name="space-name"><%= space.name %></option>
-    </select>
-  <% end %>
+  <select name="spaces">
+    <% spaces.each do |space| %>
+        <option name="space-name"><%= space.name %></option>
+    <% end %>
+  </select>
   <input type="date" name="booking-date">
   <input type="submit" Value="Request Booking">
 </form>

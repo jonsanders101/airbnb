@@ -10,6 +10,7 @@ data_mapper_setup
 
 class MakersBnb < Sinatra::Base
   register Sinatra::Partial
+  use Rack::MethodOverride
   register Sinatra::Flash
 
   enable :sessions
@@ -19,21 +20,34 @@ class MakersBnb < Sinatra::Base
     erb :homepage
   end
 
+  post '/sessions' do
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      flash.now[:errors] = ['Woops! Email or password is incorrect.']
+      erb :'sessions/new'
+  end
+end
+
+  get '/sessions/new' do
+    erb :'sessions/new'
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    redirect '/'
+  end
+
   post '/users' do
     user = User.create(username: params[:username],
                        email: params[:email],
                        phone_number: params[:phone_number],
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
-    # if user.save
-    #   p 1
-      session[:user_id] = user.id
-      redirect '/'
-    # else
-    #   p 2
-    #   flash.now[:errors] = user.errors.full_messages
-    #   erb :'users/sign_up'
-    # end
+    session[:user_id] = user.id
+    params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
 
   get '/sign-up' do
@@ -71,7 +85,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get "/spaces/:id" do
-    @space = Space.get(params['id'])
+    @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
   end
 

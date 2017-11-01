@@ -26,4 +26,17 @@ feature "Making a booking" do
     end
   end
 
+  scenario "unconfirmed reservations are not shown" do
+    booking = Booking.create(guest_id: 1,
+                  space_id: 1,
+                  confirmed: false,
+                  date: Date.today + 7)
+    space = Space.first
+    space.bookings << booking
+    space.save
+    visit '/spaces/' + space.id.to_s
+    expected_message = "reserved on #{(Date.today + 7).strftime("%d/%m/%Y")}"
+    expect(page).not_to have_content expected_message
+  end
+
 end
