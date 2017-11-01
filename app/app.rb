@@ -9,12 +9,28 @@ data_mapper_setup
 
 class MakersBnb < Sinatra::Base
   register Sinatra::Partial
+  use Rack::MethodOverride
 
   enable :sessions
   set :session_secret, 'super secret'
 
   get '/' do
     erb :homepage
+  end
+
+  post '/sessions' do
+    params[:email]
+    params[:password]
+    redirect '/'
+  end
+
+  get '/sessions/new' do
+    erb :'sessions/new'
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    redirect '/'
   end
 
   post '/users' do

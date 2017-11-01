@@ -10,5 +10,12 @@
   <form action="/sign-up" method="get">
     <input type="submit" value="Sign up!">
   </form>
+  <form method="post" action="/sessions/new">
+    <button type="submit" id="sign-in" >Sign In</button>
+  </form>
+  <form method="post" action="/sessions">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" id="sign-out">Sign Out</button>
+  </form>
   </div>
 </body>
