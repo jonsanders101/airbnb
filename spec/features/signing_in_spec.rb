@@ -17,6 +17,11 @@ feature 'Signing in' do
     expect { sign_up(email: "wrong") }.not_to change(User, :count)
   end
 
+  scenario 'checks for a unique email address' do
+    sign_up
+    expect { second_user_sign_up(email: "test@test.com") }.not_to change(User, :count)
+  end
+
   scenario 'checks that an email wad provided' do
     expect { sign_up(email: nil) }.not_to change(User, :count)
   end
