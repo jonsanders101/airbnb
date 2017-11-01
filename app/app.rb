@@ -23,7 +23,7 @@ class MakersBnb < Sinatra::Base
                        password: params[:password],
                        password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
-    redirect '/'
+    params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
 
   get '/sign-up' do
