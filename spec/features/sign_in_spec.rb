@@ -11,7 +11,7 @@ feature "When I sign-in" do
       expect(page).to have_current_path "/"
       click_button("Sign out")
       expect(page).to have_current_path "/"
-      expect(page).to_not have_content "Welcome, Test user"
+      expect(page).to_not have_content "Hello, Test user"
     end
 
     scenario "I can sign-in" do
@@ -25,7 +25,7 @@ feature "When I sign-in" do
         click_button('Sign in')
       end
       expect(page).to have_current_path "/"
-      expect(page).to have_content "Welcome, testusername"
+      expect(page).to have_content "Hello, testusername"
     end
   end
 end
