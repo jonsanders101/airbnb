@@ -4,17 +4,25 @@
     <div id="welcome-message">
       Hello, <i><%= current_user.username %></i>.
     </div>
+
       <form method="post" class="ribbon-form" action="/sessions">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" class="ribbon-button" value="Sign out">
       </form>
     <% else %>
+
+    <form action='/sessions' method='post' class="ribbon-form" id="signin-form">
+      <label for='email'>
+        Email: <input name='email' type='email'>
+      </label>
+      <label for='password'>
+        Password: <input name='password' type='password'>
+      </label>
+      <input type='submit' value='Sign in'>
+    </form>
+      or
       <form action="/sign-up" class="ribbon-form" method="get">
         <input type="submit" class="ribbon-button" value="Sign up">
-      </form>
-      or
-      <form method="get" class="ribbon-form" action="/sessions/new">
-        <input type="submit" value="Sign in">
       </form>
     <% end %>
   </div>
