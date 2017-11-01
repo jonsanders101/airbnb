@@ -3,6 +3,7 @@ ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require 'sinatra/partial'
+require 'sinatra/flash'
 
 include DataMapperSetup
 data_mapper_setup
@@ -10,6 +11,7 @@ data_mapper_setup
 class MakersBnb < Sinatra::Base
   register Sinatra::Partial
   use Rack::MethodOverride
+  register Sinatra::Flash
 
   enable :sessions
   set :session_secret, 'super secret'
@@ -19,10 +21,15 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/sessions' do
-    params[:email]
-    params[:password]
-    redirect '/'
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      flash.now[:errors] = ['Woops! Email or password is incorrect.']
+      erb :'sessions/new'
   end
+end
 
   get '/sessions/new' do
     erb :'sessions/new'

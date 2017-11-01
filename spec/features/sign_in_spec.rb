@@ -1,19 +1,29 @@
 feature "When I sign-in" do
+
   feature "Given that I have signed-up" do
-    before(:each) do
-      sign_up
+
+    let!(:user) do
+      User.create(username: 'testusername', email: 'test@test.com', password: 'Test password', password_confirmation: 'Test password', phone_number: '1234567')
     end
+
     scenario "I can sign-out" do
+      visit "/"
       expect(page).to have_current_path "/"
-      click_button("sign-out")
+      click_button("Sign out")
       expect(page).to have_current_path "/"
       expect(page).to_not have_content "Welcome, Test user"
     end
+
     scenario "I can sign-in" do
+      visit "/"
       expect(page).to have_current_path "/"
-      click_button("sign-in")
+      click_button("Sign in")
       expect(page).to have_current_path "/sessions/new"
-      expect(page).to_not have_content "Welcome, Test user"
+      fill_in 'email', with: user.email
+      fill_in 'password', with: user.password
+      click_button('Sign in')
+      expect(page).to have_current_path "/"
+      expect(page).to have_content "Welcome, testusername"
     end
   end
 end
