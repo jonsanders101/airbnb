@@ -8,7 +8,7 @@ class User
 
   property  :id, Serial
   property  :username, String, :required => true, :unique => true,
-            :messages => { :presence => 'We need your username.', :is_unique => 'We already have that username.' }
+            :messages => { :is_unique => 'We already have that username.' }
   property  :password_digest, Text
   property  :email, String, format: :email_address, :required => true, :unique => true
   property  :phone_number, String, :length => 30, :required => true
