@@ -9,6 +9,7 @@ include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+
   register Sinatra::Partial
   use Rack::MethodOverride
   register Sinatra::Flash
@@ -22,14 +23,15 @@ class MakersBnb < Sinatra::Base
 
   post '/sessions' do
     user = User.authenticate(params[:email], params[:password])
+
     if user
       session[:user_id] = user.id
       redirect '/'
     else
       flash.now[:errors] = ['Woops! Email or password is incorrect.']
       erb :'sessions/new'
+    end
   end
-end
 
   get '/sessions/new' do
     erb :'sessions/new'
@@ -61,7 +63,12 @@ end
   end
 
   get '/spaces/new' do
-    erb :'spaces/new'
+    if session[:user_id]
+      erb :'spaces/new'
+    else
+      redirect '/'
+      flash.now[:errors] = ['You must be signed-in to do that.']
+    end
   end
 
   post "/spaces" do
@@ -69,7 +76,12 @@ end
                         host_id: session[:user_id],
                         description: params[:description],
                         price: params[:price])
-    redirect "/spaces"
+    if space.save
+      redirect "/spaces"
+    else
+      flash.now[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
+      redirect '/spaces/new'
+    end
   end
 
   get "/spaces" do
@@ -77,13 +89,18 @@ end
   end
 
   post "/booking" do
-    space = Space.first(name: params[:'spaces'])
-    booking = Booking.create(guest_id: session[:user_id],
-                              space_id: (Space.first(name: params[:'spaces'])).id,
-                              date: params[:'booking-date'])
-    space.bookings << booking
-    space.save
-    redirect "/booking/successful" if booking
+    if session[:user_id]
+      space = Space.first(name: params[:'spaces'])
+      booking = Booking.create(guest_id: session[:user_id],
+                                space_id: (Space.first(name: params[:'spaces'])).id,
+                                date: params[:'booking-date'])
+      space.bookings << booking
+      space.save
+      redirect "/booking/successful" if booking
+    else
+      flash.now[:errors] = ['You must be signed-in to do that.']
+      redirect '/'
+    end
   end
 
   get "/booking/successful" do
