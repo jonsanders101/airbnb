@@ -9,7 +9,7 @@
 
       <form method="post" class="ribbon-form" action="/sessions">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" class="ribbon-button" value="Sign out">
+        <input type="submit" value="Sign out" class="log-out-button">
       </form>
     <% else %>
 
@@ -20,9 +20,11 @@
       <label for='password'>
         Password: <input name='password' type='password'>
       </label>
-      <input type='submit' value='Sign in'>
+      <input type='submit' value='Log In' class="log-in-button">
     </form>
       or
-      <a href="/sign-up" id="sign-up">Sign Up for an account</a>
+    <form class="ribbon-form" action="/sign-up">
+      <input type="submit" value="Sign Up" class="log-in-button">
+    </form>
     <% end %>
   </div>
