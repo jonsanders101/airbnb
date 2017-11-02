@@ -100,7 +100,11 @@ end
   end
 
   get "/users/phone/new" do
-    "Hi"
+    erb :'users/phone'
+  end
+
+  post '/users/phone/verify' do
+    erb :'users/phone_verify'
   end
 
   helpers do

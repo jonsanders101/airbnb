@@ -1,0 +1,10 @@
+<% if @error == true %>
+  Please try again, there was an error generating your verification code!
+<% end %>
+
+
+<form action="/users/phone/verify" method="post">
+<input name="phone_number" type="number">
+<input type="submit" value="Confirm" placeholder="Mobile Number">
+</form>
+
