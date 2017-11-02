@@ -60,3 +60,16 @@ def create_booking
                 space_id: 1,
                 date: Date.today)
 end
+
+def create_space_2
+  Space.create(name: 'test space 2',
+              description: 'test description 2',
+              price: 500,
+              host_id: 2)
+end
+
+def create_booking_2
+  Booking.create(guest_id: 2,
+                space_id: 2,
+                date: Date.today)
+end
