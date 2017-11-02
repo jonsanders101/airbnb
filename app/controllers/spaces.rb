@@ -1,5 +1,22 @@
 class MakersBnb < Sinatra::Base
 
+  get '/spaces' do
+    erb :'spaces/index'
+  end
+
+  post '/spaces' do
+    space = Space.create(name: params[:space],
+                        host_id: session[:user_id],
+                        description: params[:description],
+                        price: params[:price])
+    if space.save
+      redirect '/spaces'
+    else
+      flash[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
+      redirect '/spaces/new'
+    end
+  end
+
   get '/spaces/requests' do
     if session[:user_id]
       @my_spaces = {}
@@ -31,23 +48,6 @@ class MakersBnb < Sinatra::Base
       flash[:errors] = ['You must be signed-in to list a space.']
       redirect '/'
     end
-  end
-
-  post '/spaces' do
-    space = Space.create(name: params[:space],
-                        host_id: session[:user_id],
-                        description: params[:description],
-                        price: params[:price])
-    if space.save
-      redirect '/spaces'
-    else
-      flash[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
-      redirect '/spaces/new'
-    end
-  end
-
-  get '/spaces' do
-    erb :'spaces/index'
   end
 
   get "/spaces/:id" do

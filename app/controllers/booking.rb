@@ -1,4 +1,5 @@
 class MakersBnb < Sinatra::Base
+
   post '/booking' do
     if session[:user_id]
       space = Space.first(name: params[:'spaces'])
