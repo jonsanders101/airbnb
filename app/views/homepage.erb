@@ -1,19 +1,24 @@
+<link rel="stylesheet" href="/main.css"/>
 <body>
   <div id='home-container'>
-  <form id="button" action="/spaces/new" method="get">
-    <input id="list-space" type="submit" value="List a new space!">
-  </form>
-  <br>
-  <form id="button" action="/spaces" method="get">
-    <input id="book-trip" type="submit" value="Book a trip!">
-  </form>
-  <form id="button" action="/spaces/requests" method="get">
-    <input id="view-request" type="submit" value="View requests">
-  </form>
-  <% if current_user %>
-    <form method="get" action="/users/<%= current_user.id %>">
-      <input type="submit" value="My Account">
+    <br><br>
+    <form id="button" action="/spaces/new" method="get">
+      <input class="home-button" id="list-space" type="submit" value="List a space">
     </form>
-  <% end %>
+    <br>
+    <form id="button" action="/spaces" method="get">
+      <input class="home-button" id="book-trip" type="submit" value="Book a trip">
+    </form>
+    <br>
+    <form id="button" action="/spaces/requests" method="get">
+      <input class="home-button" id="view-request" type="submit" value="View requests">
+    </form>
+    <br>
+    <% if current_user %>
+      <form method="get" action="/users/<%= current_user.id %>">
+        <input type="submit" value="My Account">
+      </form>
+    <% end %>
+    </div>
   </div>
 </body>

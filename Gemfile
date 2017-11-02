@@ -5,6 +5,7 @@ ruby "2.4.2"
 gem 'bcrypt'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
+gem 'dotenv-rails'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-flash'
