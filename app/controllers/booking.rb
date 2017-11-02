@@ -8,7 +8,7 @@ class MakersBnb < Sinatra::Base
                                 date: params[:'booking-date'])
       space.bookings << booking
       space.save
-      redirect "/booking/successful" if booking
+      redirect '/booking/successful' if booking
     else
       flash[:errors] = ['You must be signed-in to request a booking.']
       redirect '/'

@@ -50,7 +50,7 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-  get "/spaces/:id" do
+  get '/spaces/:id' do
     @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
   end

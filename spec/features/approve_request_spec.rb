@@ -1,6 +1,6 @@
-feature "When I approve a request" do
+feature 'When I approve a request' do
 
-    scenario "I can view a booking request for my property" do
+    scenario 'I can view a booking request for my property' do
       sign_up
       create_space
       create_booking
@@ -14,7 +14,7 @@ feature "When I approve a request" do
     end
 
 
-    scenario "I can approve a booking" do
+    scenario 'I can approve a booking' do
       sign_up
       create_space_2
       create_booking_2

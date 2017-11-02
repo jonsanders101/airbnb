@@ -1,19 +1,19 @@
 <div id='logo'>
-<a href="/"><img src="/logo.png" style="width:400px" title="Home" alt="Logo"></a>
+<a href='/'><img src='/logo.png' style='width:400px' title='Home' alt='Logo'></a>
 </div>
-  <div id="access-ribbon">
+  <div id='access-ribbon'>
     <% if current_user %>
-    <div id="welcome-message">
+    <div id='welcome-message'>
       Hello, <i><%= current_user.username %></i>.
     </div>
 
-      <form method="post" class="ribbon-form" action="/sessions">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" class="ribbon-button" value="Sign out">
+      <form method='post' class='ribbon-form' action='/sessions'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' class='ribbon-button' value='Sign out'>
       </form>
     <% else %>
 
-    <form action='/sessions' method='post' class="ribbon-form" id="signin-form">
+    <form action='/sessions' method='post' class='ribbon-form' id='signin-form'>
       <label for='email'>
         Email: <input name='email' type='email'>
       </label>
@@ -23,6 +23,6 @@
       <input type='submit' value='Sign in'>
     </form>
       or
-      <a href="/users/new" id="sign-up">Sign Up for an account</a>
+      <a href='/users/new' id='sign-up'>Sign Up for an account</a>
     <% end %>
   </div>

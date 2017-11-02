@@ -4,7 +4,7 @@ def sign_up(username: 'Test user',
             password: 'Test password',
             password_confirmation: 'Test password')
   visit '/users/new'
-  within(:css, "form#signup-form") do
+  within(:css, 'form#signup-form') do
     fill_in :username, with: username
     fill_in :email, with: email
     fill_in :phone_number, with: phone_number
@@ -39,12 +39,12 @@ def second_user_sign_up(username: 'Second user',
 end
 
 def post_listing(space = 'test space', description = 'test description', price = 1000)
-  click_button("list-space")
-  within("//form[@id='listing_form']") do
-    fill_in "space", with: space
-    fill_in "description", with: description
-    fill_in "price", with: price
-    click_button("complete-listing")
+  click_button('list-space')
+  within('//form[@id="listing_form"]') do
+    fill_in 'space', with: space
+    fill_in 'description', with: description
+    fill_in 'price', with: price
+    click_button('complete-listing')
   end
 end
 
