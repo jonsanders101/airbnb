@@ -128,6 +128,10 @@ end
     erb :'users/phone_verify'
   end
 
+  post '/users/phone/success' do
+    erb :'users/phone_success'
+  end
+
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
