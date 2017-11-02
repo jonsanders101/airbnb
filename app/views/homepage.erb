@@ -5,17 +5,10 @@
   </form>
   <br>
   <form id="button" action="/spaces" method="get">
-    <input type="submit" value="Book a trip!">
+    <input id="book-trip" type="submit" value="Book a trip!">
   </form>
-  <form action="/sign-up" method="get">
-    <input type="submit" value="Sign up!">
-  </form>
-  <form method="get" action="/sessions/new">
-    <input type="submit" value="Sign in">
-  </form>
-  <form method="post" action="/sessions">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Sign out">
+  <form id="button" action="/spaces/requests" method="get">
+    <input id="view-request" type="submit" value="View requests">
   </form>
   <% if current_user %>
     <form method="get" action="/users/<%= current_user.id %>">

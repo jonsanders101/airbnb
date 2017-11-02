@@ -17,7 +17,8 @@ feature 'Signing in' do
   scenario 'checks that a unique username is entered' do
     sign_up
     expect { second_user_sign_up(username: "Test user") }.not_to change(User, :count)
-    expect(page).to have_content("Welcome, Test user We already have that username")
+    expect(page).to have_content("Hello, Test user")
+    expect(page).to have_content("We already have that username")
   end
 
   scenario 'users count should go up by 1 following successful sign-up' do
@@ -31,7 +32,8 @@ feature 'Signing in' do
   scenario 'checks for a unique email address' do
     sign_up
     expect { second_user_sign_up(email: "test@test.com") }.not_to change(User, :count)
-    expect(page).to have_content("Welcome, Test user Email is already taken")
+    expect(page).to have_content("Hello, Test user")
+    expect(page).to have_content("Email is already taken")
   end
 
   scenario 'checks that an email was provided' do
@@ -42,6 +44,6 @@ feature 'Signing in' do
   scenario 'username should appear on homepage following successful sign-up' do
     sign_up
     expect(current_path).to eq("/")
-    expect(page).to have_content("Welcome, Test user")
+    expect(page).to have_content("Hello, Test user")
   end
 end

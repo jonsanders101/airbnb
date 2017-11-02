@@ -9,21 +9,26 @@ feature "When I sign-in" do
     scenario "I can sign-out" do
       visit "/"
       expect(page).to have_current_path "/"
+      fill_in 'email', with: user.email
+      fill_in 'password', with: user.password
+      within(:css, "form#signin-form") do
+        click_button('Sign in')
+      end
       click_button("Sign out")
       expect(page).to have_current_path "/"
-      expect(page).to_not have_content "Welcome, Test user"
+      expect(page).to_not have_content "Hello, Test user"
     end
 
     scenario "I can sign-in" do
       visit "/"
       expect(page).to have_current_path "/"
-      click_button("Sign in")
-      expect(page).to have_current_path "/sessions/new"
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      click_button('Sign in')
+      within(:css, "form#signin-form") do
+        click_button('Sign in')
+      end
       expect(page).to have_current_path "/"
-      expect(page).to have_content "Welcome, testusername"
+      expect(page).to have_content "Hello, testusername"
     end
   end
 end

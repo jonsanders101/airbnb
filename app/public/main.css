@@ -1,6 +1,10 @@
 div#header {
   width: 100%;
+<<<<<<< HEAD
   height: 50px;
+=======
+  position: relative;
+>>>>>>> working-branch
   top:0px;
   color: #ff5a5f;
   text-align: center;
@@ -12,6 +16,23 @@ div#home-container {
   padding-top: 100px;
 }
 
+<<<<<<< HEAD
 div#notifications {
   padding-top: 100px;
 }
+=======
+.ribbon-form {
+  display: inline-block;
+}
+
+div#welcome-message {
+  display: inline-block;
+  padding-right: 15px;
+}
+
+
+div#access-ribbon {
+  text-align: right;
+  font-size: 12px;
+}
+>>>>>>> working-branch
