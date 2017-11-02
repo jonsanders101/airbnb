@@ -9,6 +9,7 @@ include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
+
   register Sinatra::Partial
   use Rack::MethodOverride
   register Sinatra::Flash
@@ -22,14 +23,15 @@ class MakersBnb < Sinatra::Base
 
   post '/sessions' do
     user = User.authenticate(params[:email], params[:password])
+
     if user
       session[:user_id] = user.id
       redirect '/'
     else
-      flash.now[:errors] = ['Woops! Email or password is incorrect.']
-      erb :'sessions/new'
+      flash[:errors] = ['Woops! Email or password is incorrect.']
+      redirect '/'
+    end
   end
-end
 
   get '/sessions/new' do
     erb :'sessions/new'
@@ -50,8 +52,8 @@ end
       session[:user_id] = user.id
       redirect '/'
     else
-      flash.now[:errors] = user.errors.full_messages
-      erb :'users/sign_up'
+      flash[:errors] = user.errors.full_messages
+      redirect '/'
     end
     # params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
@@ -61,7 +63,12 @@ end
   end
 
   get '/spaces/new' do
-    erb :'spaces/new'
+    if session[:user_id]
+      erb :'spaces/new'
+    else
+      flash[:errors] = ['You must be signed-in to request a booking.']
+      redirect '/'
+    end
   end
 
   post "/spaces" do
@@ -69,7 +76,12 @@ end
                         host_id: session[:user_id],
                         description: params[:description],
                         price: params[:price])
-    redirect "/spaces"
+    if space.save
+      redirect "/spaces"
+    else
+      flash[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
+      redirect '/spaces/new'
+    end
   end
 
   get "/spaces" do
@@ -77,13 +89,18 @@ end
   end
 
   post "/booking" do
-    space = Space.first(name: params[:'spaces'])
-    booking = Booking.create(guest_id: session[:user_id],
-                              space_id: (Space.first(name: params[:'spaces'])).id,
-                              date: params[:'booking-date'])
-    space.bookings << booking
-    space.save
-    redirect "/booking/successful" if booking
+    if session[:user_id]
+      space = Space.first(name: params[:'spaces'])
+      booking = Booking.create(guest_id: session[:user_id],
+                                space_id: (Space.first(name: params[:'spaces'])).id,
+                                date: params[:'booking-date'])
+      space.bookings << booking
+      space.save
+      redirect "/booking/successful" if booking
+    else
+      flash[:errors] = ['You must be signed-in to do that.']
+      redirect '/'
+    end
   end
 
   get "/booking/successful" do
@@ -91,24 +108,27 @@ end
   end
 
   get '/spaces/requests' do
+    if session[:user_id]
+      @my_spaces = {}
+      Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
+      @requests = Booking.all(:confirmed => :pending)
+      @my_requests = {}
+      @my_guests = {}
 
-    @my_spaces = {}
-    Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
-    @requests = Booking.all(:confirmed => :pending)
-    @my_requests = {}
-    @my_guests = {}
-
-    @requests.each do |request|
-      if @my_spaces.has_key?(request.space_id)
-        @my_requests[request['id']] = request
-        # TODO: need to have booking populated with guest_id
-        guest = User.get(:id => request['guest_id'])
-        guest = User.first()
-        @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
+      @requests.each do |request|
+        if @my_spaces.has_key?(request.space_id)
+          @my_requests[request['id']] = request
+          # TODO: need to have booking populated with guest_id
+          guest = User.get(:id => request['guest_id'])
+          guest = User.first()
+          @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
+        end
+      end
+      erb :'booking/all'
+    else
+      flash[:errors] = ['You must be signed-in to do that.']
+      redirect '/'
     end
-  end
-
-    erb :'booking/all'
   end
 
   get "/spaces/:id" do
