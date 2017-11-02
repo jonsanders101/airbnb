@@ -94,7 +94,7 @@ end
 
     @my_spaces = {}
     Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
-    @requests = Booking.all(:confirmed => false)
+    @requests = Booking.all(:confirmed => :pending)
     @my_requests = {}
     @my_guests = {}
 
@@ -105,8 +105,8 @@ end
         guest = User.get(:id => request['guest_id'])
         guest = User.first()
         @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
-      end
     end
+  end
 
     erb :'booking/all'
   end
