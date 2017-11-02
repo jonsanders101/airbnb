@@ -111,7 +111,7 @@ class MakersBnb < Sinatra::Base
     if session[:user_id]
       @my_spaces = {}
       Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
-      @requests = Booking.all(:confirmed => false)
+      @requests = Booking.all(:confirmed => :pending)
       @my_requests = {}
       @my_guests = {}
 
@@ -123,12 +123,13 @@ class MakersBnb < Sinatra::Base
           guest = User.first()
           @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
         end
-      end
-      erb :'booking/all'
     else
       flash[:errors] = ['You must be signed-in to do that.']
       redirect '/'
     end
+  end
+
+    erb :'booking/all'
   end
 
   get "/spaces/:id" do

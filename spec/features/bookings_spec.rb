@@ -7,11 +7,11 @@ feature "Making a booking" do
   scenario "I can see when a space has been booked" do
     booking_1 = Booking.create(guest_id: 1,
                   space_id: 1,
-                  confirmed: true,
+                  confirmed: :confirmed,
                   date: Date.today)
     booking_2 = Booking.create(guest_id: 2,
                   space_id: 1,
-                  confirmed: true,
+                  confirmed: :confirmed,
                   date: Date.today + 3)
     space = Space.first
     space.bookings << booking_1
@@ -29,7 +29,7 @@ feature "Making a booking" do
   scenario "unconfirmed reservations are not shown" do
     booking = Booking.create(guest_id: 1,
                   space_id: 1,
-                  confirmed: false,
+                  confirmed: :pending,
                   date: Date.today + 7)
     space = Space.first
     space.bookings << booking

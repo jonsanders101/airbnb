@@ -8,6 +8,6 @@ class Booking
   property :id, Serial
   property :guest_id, Integer, required: true
   property :space_id, Integer
-  property :confirmed, Boolean, default: false
+  property :confirmed, Enum[:pending, :confirmed, :rejected], default: :pending
   property :date, Date
 end
