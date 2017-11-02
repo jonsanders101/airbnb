@@ -131,6 +131,32 @@ class MakersBnb < Sinatra::Base
     end
   end
 
+  post '/booking/confirm' do
+      @confirmed_id = params[:approve]
+      @rejected_id = params[:reject]
+      erb :'booking/confirmed'
+  end
+
+  post '/spaces/requests' do
+      @my_spaces = {}
+      Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
+      @requests = Booking.all(:confirmed => :pending)
+      @my_requests = {}
+      @my_guests = {}
+
+      @requests.each do |request|
+      if @my_spaces.has_key?(request.space_id)
+        @my_requests[request['id']] = request
+        # TODO: need to have booking populated with guest_id
+        guest = User.get(:id => request['guest_id'])
+        guest = User.first()
+        @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
+      end
+    end
+    erb :'booking/all'
+  end
+
+
   get "/spaces/:id" do
     @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
