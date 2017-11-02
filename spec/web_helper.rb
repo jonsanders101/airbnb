@@ -3,11 +3,13 @@ def sign_up(username: 'Test user',
             password: 'Test password',
             password_confirmation: 'Test password')
   visit '/sign-up'
-  fill_in :username, with: username
-  fill_in :email, with: email
-  fill_in :password, with: password
-  fill_in :password_confirmation, with: password_confirmation
-  click_button 'Sign up'
+  within(:css, "form#signup-form") do
+    fill_in :username, with: username
+    fill_in :email, with: email
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password_confirmation
+    click_button 'Sign up'
+  end
 end
 
 def second_user_sign_up(username: 'Second user',
@@ -15,11 +17,13 @@ def second_user_sign_up(username: 'Second user',
   password: 'Second password',
   password_confirmation: 'Second password')
   visit '/sign-up'
-  fill_in :username, with: username
-  fill_in :email, with: email
-  fill_in :password, with: password
-  fill_in :password_confirmation, with: password_confirmation
-  click_button 'Sign up'
+  within(:css, "form#signup-form") do
+    fill_in :username, with: username
+    fill_in :email, with: email
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password_confirmation
+    click_button 'Sign up'
+  end
 end
 
 def post_listing(space = 'test space', description = 'test description', price = 1000)
