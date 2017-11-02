@@ -18,6 +18,8 @@ feature "Making a booking" do
     space.bookings << booking_2
     space.save
     visit '/spaces/' + space.id.to_s
+    expect(page).to have_current_path '/spaces/' + space.id.to_s
+    expect(page.status_code).to be(200)
     expected_message_1 = "reserved on #{Date.today.strftime("%d/%m/%Y")}"
     expected_message_2 = "reserved on #{(Date.today + 3).strftime("%d/%m/%Y")}"
     within('.reservations_list') do
