@@ -1,6 +1,6 @@
 feature 'When I create a listing' do
 
-  feature 'Given that I have signed in' do
+  feature 'Given that I have logged in' do
     before(:each) do
       sign_up
     end

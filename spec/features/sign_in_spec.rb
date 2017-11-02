@@ -1,4 +1,4 @@
-feature 'When I sign-in' do
+feature 'When I log in' do
 
   feature 'Given that I have signed-up' do
 
@@ -6,26 +6,26 @@ feature 'When I sign-in' do
       User.create(username: 'testusername', email: 'test@test.com', password: 'Test password', password_confirmation: 'Test password', phone_number: '1234567')
     end
 
-    scenario 'I can sign-out' do
+    scenario 'I can log out' do
       visit '/'
       expect(page).to have_current_path '/'
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      within(:css, 'form#signin-form') do
-        click_button('Sign in')
+      within(:css, 'form#login-form') do
+        click_button('Log in')
       end
-      click_button('Sign out')
+      click_button('Log out')
       expect(page).to have_current_path '/'
       expect(page).to_not have_content 'Hello, Test user'
     end
 
-    scenario 'I can sign-in' do
+    scenario 'I can log in' do
       visit '/'
       expect(page).to have_current_path '/'
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      within(:css, 'form#signin-form') do
-        click_button('Sign in')
+      within(:css, 'form#login-form') do
+        click_button('Log in')
       end
       expect(page).to have_current_path '/'
       expect(page).to have_content 'Hello, testusername'

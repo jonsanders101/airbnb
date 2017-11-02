@@ -81,8 +81,8 @@ The following user stories define the additional functionality we added once we 
 
 ````
 As a user
-So that I know my sign-up was successful
-I want to receive an email confirming my sign-up
+So that I know my signup was successful
+I want to receive an email confirming my signup
 
 As a host
 So that I know my space has been listed
@@ -106,7 +106,7 @@ I want to receive an email when my host rejects my request
 
 As a user
 So that I can be aware of happenings on my account
-I want to be able to provide a phone number upon sign-up
+I want to be able to provide a phone number upon signup
 
 As a host
 So that I am aware of outstanding booking requests

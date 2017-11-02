@@ -36,7 +36,7 @@ class MakersBnb < Sinatra::Base
       end
       erb :'booking/all'
     else
-      flash[:errors] = ['You must be signed-in to view booking requests on your spaces.']
+      flash[:errors] = ['You must be logged in to view booking requests on your spaces.']
       redirect '/'
     end
   end
@@ -45,7 +45,7 @@ class MakersBnb < Sinatra::Base
     if session[:user_id]
       erb :'spaces/new'
     else
-      flash[:errors] = ['You must be signed-in to list a space.']
+      flash[:errors] = ['You must be logged in to list a space.']
       redirect '/'
     end
   end

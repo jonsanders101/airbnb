@@ -9,18 +9,18 @@
 
       <form method='post' class='ribbon-form' action='/sessions'>
         <input type='hidden' name='_method' value='delete'>
-        <input type='submit' class='ribbon-button' value='Sign out'>
+        <input type='submit' class='ribbon-button' value='Log out'>
       </form>
     <% else %>
 
-    <form action='/sessions' method='post' class='ribbon-form' id='signin-form'>
+    <form action='/sessions' method='post' class='ribbon-form' id='login-form'>
       <label for='email'>
         Email: <input name='email' type='email'>
       </label>
       <label for='password'>
         Password: <input name='password' type='password'>
       </label>
-      <input type='submit' value='Sign in'>
+      <input type='submit' value='Log in'>
     </form>
       or
       <a href='/users/new' id='sign-up'>Sign Up for an account</a>

@@ -1,4 +1,4 @@
-feature 'Signing in' do
+feature 'Logging in' do
 
   scenario 'after you sign up you are redirected to homepage' do
     sign_up
