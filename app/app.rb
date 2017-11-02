@@ -66,29 +66,29 @@ class MakersBnb < Sinatra::Base
     if session[:user_id]
       erb :'spaces/new'
     else
-      flash[:errors] = ['You must be signed-in to request a booking.']
+      flash[:errors] = ['You must be signed-in to list a space.']
       redirect '/'
     end
   end
 
-  post "/spaces" do
+  post '/spaces' do
     space = Space.create(name: params[:space],
                         host_id: session[:user_id],
                         description: params[:description],
                         price: params[:price])
     if space.save
-      redirect "/spaces"
+      redirect '/spaces'
     else
       flash[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
       redirect '/spaces/new'
     end
   end
 
-  get "/spaces" do
+  get '/spaces' do
     erb :'spaces/index'
   end
 
-  post "/booking" do
+  post '/booking' do
     if session[:user_id]
       space = Space.first(name: params[:'spaces'])
       booking = Booking.create(guest_id: session[:user_id],
@@ -98,12 +98,12 @@ class MakersBnb < Sinatra::Base
       space.save
       redirect "/booking/successful" if booking
     else
-      flash[:errors] = ['You must be signed-in to do that.']
+      flash[:errors] = ['You must be signed-in to request a booking.']
       redirect '/'
     end
   end
 
-  get "/booking/successful" do
+  get '/booking/successful' do
     erb :'booking/successful'
   end
 
@@ -126,7 +126,7 @@ class MakersBnb < Sinatra::Base
       end
       erb :'booking/all'
     else
-      flash[:errors] = ['You must be signed-in to do that.']
+      flash[:errors] = ['You must be signed-in to view booking requests on your spaces.']
       redirect '/'
     end
   end
@@ -157,7 +157,7 @@ class MakersBnb < Sinatra::Base
   end
 
 
-  get "/spaces/:id" do
+  get '/spaces/:id' do
     @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
   end
