@@ -66,8 +66,8 @@ class MakersBnb < Sinatra::Base
     if session[:user_id]
       erb :'spaces/new'
     else
-      redirect '/spaces'
       flash[:errors] = ['You must be signed-in to request a booking.']
+      redirect '/'
     end
   end
 
