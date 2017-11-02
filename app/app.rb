@@ -123,13 +123,12 @@ class MakersBnb < Sinatra::Base
           guest = User.first()
           @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
         end
+      end
+      erb :'booking/all'
     else
       flash[:errors] = ['You must be signed-in to do that.']
       redirect '/'
     end
-  end
-
-    erb :'booking/all'
   end
 
   get "/spaces/:id" do

@@ -9,6 +9,7 @@ feature "When I approve a request" do
 
     scenario "I can view a booking request for my property" do
       visit '/spaces/requests'
+      expect(page).to have_current_path('/spaces/requests')
       within('form#my-bookings')do
         expect(page).to have_content('test space')
         expect(page).to have_content('Test user')

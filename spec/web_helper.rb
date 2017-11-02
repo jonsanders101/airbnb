@@ -14,6 +14,16 @@ def sign_up(username: 'Test user',
   end
 end
 
+def sign_in(email = 'test@test.com', password = 'Test password')
+  visit '/'
+    within(:css, 'div#access-ribbon') do
+      fill_in('email', with: email)
+      fill_in('password', with: password)
+      click_button('Sign in')
+    end
+end
+
+
 def second_user_sign_up(username: 'Second user',
   email: 'second@test.com',
   phone_number: '07496950989',
