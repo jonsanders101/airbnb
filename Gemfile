@@ -13,6 +13,7 @@ gem 'sinatra-partial'
 gem 'sanitize'
 gem 'twilio-ruby'
 gem 'rotp'
+gem 'pry'
 
 group :test do
   gem 'capybara'
