@@ -9,6 +9,7 @@ require 'twilio-ruby'
 require 'sanitize'
 require 'erb'
 require 'rotp'
+require 'pry'
 
 include ERB::Util
 include DataMapperSetup
@@ -23,9 +24,13 @@ class MakersBnb < Sinatra::Base
   set :session_secret, 'super secret'
 
   before do
-    @twilio_number = "+15005550006" #ENV['twilio_number'] 
-    @client = Twilio::REST::Client.new ENV['account_sid'], ENV['auth_token']
+    @twilio_number = ENV['TWILIO_NUMBER']
+    @account_number = ENV['ACCOUNT_SID']
+    @auth_token = ENV['AUTH_TOKEN']
 
+    @client = Twilio::REST::Client.new @account_number, @auth_token
+
+    # binding.pry
     if params[:error].nil?
       @error =false
     else
@@ -154,11 +159,12 @@ end
           @phone_number = url_encode(@phone_number)
           redirect to("/users/phone?phone_number=#{@phone_number}&verified=1")
         end
+        # binding.pry
         totp = ROTP::TOTP.new("drawtheowl")
         code = totp.now
         current_user.code = code
         current_user.save
-        @client.api.account.messages.create(
+        @client.messages.create(
           :from => @twilio_number,
           :to => @phone_number,
           :body => "Your verification code is #{code}")
