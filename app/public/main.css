@@ -13,6 +13,12 @@ div#header {
   font-family: 'Montserrat', sans-serif;
 }
 
+div#logo {
+  position: absolute;
+  text-align: left
+  display: inline-block;
+}
+
 div#home-container {
   padding-top: 100px;
 }
@@ -29,8 +35,10 @@ div#welcome-message {
   padding-right: 15px;
 }
 
-
 div#access-ribbon {
-  text-align: right;
+  margin-top: 50px;
+  position: absolute;
+  display: inline-block;
+  text-align: center;
   font-size: 12px;
 }
