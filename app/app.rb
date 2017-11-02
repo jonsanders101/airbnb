@@ -28,8 +28,8 @@ class MakersBnb < Sinatra::Base
       session[:user_id] = user.id
       redirect '/'
     else
-      flash.now[:errors] = ['Woops! Email or password is incorrect.']
-      erb :'sessions/new'
+      flash[:errors] = ['Woops! Email or password is incorrect.']
+      redirect '/'
     end
   end
 
@@ -52,8 +52,8 @@ class MakersBnb < Sinatra::Base
       session[:user_id] = user.id
       redirect '/'
     else
-      flash.now[:errors] = user.errors.full_messages
-      erb :'users/sign_up'
+      flash[:errors] = user.errors.full_messages
+      redirect '/'
     end
     # params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
@@ -66,8 +66,8 @@ class MakersBnb < Sinatra::Base
     if session[:user_id]
       erb :'spaces/new'
     else
-      redirect '/'
-      flash.now[:errors] = ['You must be signed-in to do that.']
+      redirect '/spaces'
+      flash[:errors] = ['You must be signed-in to request a booking.']
     end
   end
 
@@ -79,7 +79,7 @@ class MakersBnb < Sinatra::Base
     if space.save
       redirect "/spaces"
     else
-      flash.now[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
+      flash[:errors] = ['Space wasn\'t added. You must have missed something. Please try again.']
       redirect '/spaces/new'
     end
   end
@@ -98,7 +98,7 @@ class MakersBnb < Sinatra::Base
       space.save
       redirect "/booking/successful" if booking
     else
-      flash.now[:errors] = ['You must be signed-in to do that.']
+      flash[:errors] = ['You must be signed-in to do that.']
       redirect '/'
     end
   end
@@ -126,7 +126,7 @@ class MakersBnb < Sinatra::Base
       end
       erb :'booking/all'
     else
-      flash.now[:errors] = ['You must be signed-in to do that.']
+      flash[:errors] = ['You must be signed-in to do that.']
       redirect '/'
     end
   end
