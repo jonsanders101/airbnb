@@ -3,7 +3,7 @@ def sign_up(username: 'Test user',
             phone_number: '07496950988',
             password: 'Test password',
             password_confirmation: 'Test password')
-  visit '/sign-up'
+  visit '/users/new'
   within(:css, "form#signup-form") do
     fill_in :username, with: username
     fill_in :email, with: email
@@ -29,7 +29,7 @@ def second_user_sign_up(username: 'Second user',
   phone_number: '07496950989',
   password: 'Second password',
   password_confirmation: 'Second password')
-  visit '/sign-up'
+  visit '/users/new'
   fill_in :username, with: username
   fill_in :email, with: email
   fill_in :phone_number, with: phone_number
