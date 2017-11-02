@@ -6,8 +6,11 @@ gem 'bcrypt'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
+gem 'sanitize'
+gem 'twilio-ruby'
 
 group :test do
   gem 'capybara'
