@@ -4,7 +4,13 @@ require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require 'sinatra/partial'
 require 'sinatra/flash'
+require 'sinatra/multi_route'
+require 'twilio-ruby'
+require 'sanitize'
+require 'erb'
+require 'rotp'
 
+include ERB::Util
 include DataMapperSetup
 data_mapper_setup
 
@@ -15,6 +21,17 @@ class MakersBnb < Sinatra::Base
 
   enable :sessions
   set :session_secret, 'super secret'
+
+  before do
+    @twilio_number = ENV['twilio_number']
+    @client = Twilio::REST::Client.new ENV['account_sid'], ENV['auth_token']
+
+    if params[:error].nil?
+      @error =false
+    else
+      @error = false
+    end
+  end
 
   get '/' do
     erb :homepage
@@ -125,6 +142,18 @@ end
   end
 
   post '/users/phone/verify' do
+    @phone_number = params[:phone_number]
+    @code = params[:code]
+    current_user.phone_number = @phone_number
+    if current_user.phone_verified == true
+      @verified = true
+    elsif current_user.nil? || current_user.code != @code
+      @phone_number = url_encode(@phone_number)
+      redirect to("/users/phone?phone_number=#{@phone_number}&error=1")
+    else
+      current_user.phone_verified = true
+      current_user.save
+    end
     erb :'users/phone_verify'
   end
 

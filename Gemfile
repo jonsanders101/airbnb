@@ -11,6 +11,7 @@ gem 'sinatra-flash'
 gem 'sinatra-partial'
 gem 'sanitize'
 gem 'twilio-ruby'
+gem 'rotp'
 
 group :test do
   gem 'capybara'
