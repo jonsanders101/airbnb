@@ -7,9 +7,9 @@
       Hello, <i><%= current_user.username %></i>.
     </div>
 
-      <form method="post" class="ribbon-form" action="/sessions">
+      <form method="post" class="ribbon-form" action="/sessions"id="signout-form">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Sign out" class="log-out-button">
+        <input type="submit" value="Log Out" class="log-out-button">
       </form>
     <% else %>
 

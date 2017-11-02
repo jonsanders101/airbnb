@@ -12,9 +12,11 @@ feature "When I sign-in" do
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
       within(:css, "form#signin-form") do
-        click_button('Sign in')
+        click_button('Log In')
       end
-      click_button("Sign out")
+      within(:css, "form#signout-form") do
+        click_button('Log Out')
+      end
       expect(page).to have_current_path "/"
       expect(page).to_not have_content "Hello, Test user"
     end
@@ -25,7 +27,7 @@ feature "When I sign-in" do
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
       within(:css, "form#signin-form") do
-        click_button('Sign in')
+        click_button('Log In')
       end
       expect(page).to have_current_path "/"
       expect(page).to have_content "Hello, testusername"

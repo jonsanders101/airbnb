@@ -39,7 +39,7 @@ def second_user_sign_up(username: 'Second user',
 end
 
 def post_listing(space = 'test space', description = 'test description', price = 1000)
-  click_button("list-space")
+  click_button("List space!")
   within("//form[@id='listing_form']") do
     fill_in "space", with: space
     fill_in "description", with: description
