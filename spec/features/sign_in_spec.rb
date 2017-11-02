@@ -3,7 +3,7 @@ feature "When I sign-in" do
   feature "Given that I have signed-up" do
 
     let!(:user) do
-      User.create(username: 'testusername', email: 'test@test.com', password: 'Test password', password_confirmation: 'Test password', phone_number: '1234567')
+      User.create(username: 'testusername', email: 'test@test.com', password: 'Test password', password_confirmation: 'Test password')
     end
 
     scenario "I can sign-out" do
