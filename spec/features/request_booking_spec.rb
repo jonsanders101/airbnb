@@ -13,7 +13,6 @@ feature 'When I request a booking' do
       expect(current_path).to eq('/spaces')
       expect(page).to have_css('form#booking-request')
       within('form#booking-request') do
-        select 'test space', from: 'spaces'
         fill_in('booking-date', with: '31/10/2017')
       end
       click_button('Request Booking')
