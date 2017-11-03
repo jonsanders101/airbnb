@@ -73,6 +73,10 @@ div#access-ribbon {
 
 .button:active, .log-in-button:active, .log-out-button:active {
   transform: translateY(1px);
+  transform: scale(1.1);
+  background-color: #ff5a5f;
+  color: white;
+  border-color: #ff5a5f;
 }
 
 .log-in-button, .log-out-button {
