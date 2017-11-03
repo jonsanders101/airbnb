@@ -30,7 +30,6 @@ class MakersBnb < Sinatra::Base
 
     @client = Twilio::REST::Client.new @account_number, @auth_token
 
-    # binding.pry
     if params[:error].nil?
       @error =false
     else
