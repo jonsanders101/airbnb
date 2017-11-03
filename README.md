@@ -17,7 +17,7 @@ Our task is to make a clone of Air B'n'B.
 * **Server-side**: Ruby, Sinatra
 * **Database**: PostgreSQL
 * **ORM**: DataMapper
-* **Testing**: Jasmine, Capybara
+* **Testing**: Capybara
 
 ## User Stories
 

@@ -14,8 +14,8 @@ div#header {
 }
 
 div#logo {
-  position: absolute;
-  text-align: left
+  position: relative;
+  text-align: right;
   height: 50px;
   display: inline-block;
 }
@@ -94,22 +94,27 @@ input {
 
 
 #wrapper {
+  height: 312px;
   width: auto 0;
-  margin: 55px auto 0;
+  margin: 20px auto 0;
 }
 
 #wrapper p {
-  text-align: center;
+  text-align: left;
+  position: absolute;
+  margin: 5px 0;
+  bottom: 0;
+  left: 10px;
   color: #fff;
   font-size: 2em;
-  font-family: "Arial Black", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-shadow: 2px 2px #555;
-  margin: 10% 0;
 }
 
 #slideshow {
   background: url(http://lab.mthibault.ca/external/img/roto01.jpg) no-repeat; /* this default image will show where browsers unable to process the [animation] function */
   background-size: contain;
+  position: relative;
   width: auto 0;
   height: 312px;
   /* animation */
