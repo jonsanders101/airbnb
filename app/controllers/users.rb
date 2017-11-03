@@ -4,6 +4,10 @@ class MakersBnb < Sinatra::Base
     erb :'users/sign_up'
   end
 
+  get '/users/recover' do
+    erb :'users/recover'
+  end
+
   post '/users' do
     user = User.create(username: params[:username],
                        email: params[:email],
