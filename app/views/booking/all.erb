@@ -1,23 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Makers BnB </title>
-  </head>
 
-  <body>
-    <h1> Confirm requests for your spaces on Makers BnB!</h1>
-
-    <form id='my-bookings' name='my-bookings' action='/booking/confirm' method='post'>
-
-      <% @my_requests.each do |request_id, request|%>
-      <label>
-        <%= @my_spaces[request['space_id']] %>
-        <%= @my_guests[request['guest_id']] %>
-        <%= request['date'] %></label>
-      <input type='submit' value='Approve' id='<%=request['id']%>' name='approve'>
-      <% end %>
-    </form>
+<h1> Confirm requests for your spaces on Makers BnB!</h1>
 
 
-  </body>
-</html>
+  <% @my_requests.each do |request_id, request|%>
+    <p>
+      <%= @my_spaces[request['space_id']] %>,
+      <%= @my_guests[request['guest_id']] %>,
+      <%= request['date'] %>
+
+      <form id='my-bookings' name='my-bookings' action='/booking/confirm' method='post'>
+        <input type="hidden" name="booking_id" value="<%=request['id']%>">
+        <input type='submit' value='Approve' name='approve'>
+      </form>
+
+      <form id='my-bookings-rejections' name='my-bookings-rejections' action='/booking/reject' method='post'>
+        <input type="hidden" name="booking_id" value="<%=request['id']%>">
+        <input type='submit' value='Reject' name='reject'>
+      </form>
+    </p>
+  <% end %>
+
+  <p><a href="/">return to homepage</a></p>

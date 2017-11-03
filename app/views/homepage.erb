@@ -19,5 +19,10 @@
     <form action="/spaces/requests">
       <input type="submit" value="View requests" class='button'>
     </form>
+    <% if current_user %>
+      <form method="get" action="/users/<%= current_user.id %>">
+        <input type="submit" value="My Account">
+      </form>
+    <% end %>
   </div>
 </body>

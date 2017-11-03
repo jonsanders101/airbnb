@@ -20,9 +20,25 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/booking/confirm' do
-      @confirmed_id = params[:approve]
-      @rejected_id = params[:reject]
-      erb :'booking/confirmed'
+      booking = Booking.get(params[:booking_id])
+      booking.confirmed = :confirmed
+      booking.save
+      redirect '/booking/confirmed'
+  end
+
+  get '/booking/confirmed' do
+    erb :'booking/confirmed'
+  end
+
+  post '/booking/reject' do
+    booking = Booking.get(params[:booking_id])
+    booking.confirmed = :rejected
+    booking.save
+    redirect '/booking/rejected'
+  end
+
+  get '/booking/rejected' do
+    erb :'booking/rejected'
   end
 
 end

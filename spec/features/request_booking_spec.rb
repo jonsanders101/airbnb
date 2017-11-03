@@ -18,7 +18,7 @@ feature 'When I request a booking' do
       end
       click_button('Request Booking')
       expect(Booking.count).to eq 1
-      expect(page).to have_content('Booking successful!')
+      expect(page).to have_content('You have successfully submitted your booking request!')
     end
 
   end
