@@ -26,7 +26,7 @@ def second_user_sign_up(username: 'Second user',
   email: 'second@test.com',
   password: 'Second password',
   password_confirmation: 'Second password')
-  visit '/sign-up'
+  visit '/users/new'
   fill_in :username, with: username
   fill_in :email, with: email
   fill_in :password, with: password

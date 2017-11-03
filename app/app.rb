@@ -58,10 +58,6 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-  get '/sign-up' do
-    erb :'users/sign_up'
-  end
-
   set :partial_template_engine, :erb
   enable :partial_underscores
 
