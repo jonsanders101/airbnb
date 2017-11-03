@@ -30,7 +30,8 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/users/phone/verify' do
-    @phone_number = Sanitize.clean(params[:phone_number])
+    session[:phone_number] = params[:phone_number]
+    @phone_number = Sanitize.clean(session[:phone_number])
     if @phone_number.empty?
       redirect to("/users/phone/verify/?error=1")
     end
@@ -51,6 +52,7 @@ class MakersBnb < Sinatra::Base
 
   post '/users/phone/success' do
     @code = params[:code]
+    @phone_number = session[:phone_number]
     current_user.phone_number = @phone_number
     if current_user.phone_verified == true
       @verified = true
@@ -59,6 +61,7 @@ class MakersBnb < Sinatra::Base
       redirect to("/users/phone?phone_number=#{@phone_number}&error=1")
     else
       current_user.phone_verified = true
+      current_user.phone_number = @phone_number
       current_user.save
     end
     erb :'users/phone_success'

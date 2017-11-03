@@ -23,6 +23,10 @@ class MakersBnb < Sinatra::Base
       booking = Booking.get(params[:booking_id])
       booking.confirmed = :confirmed
       booking.save
+      guest = User.first(id: booking.guest_id)
+      if guest.phone_number
+        Phone.send_message(guest.phone_number,"Congratulations, your booking has been approved!")
+      end
       redirect '/booking/confirmed'
   end
 
@@ -34,9 +38,13 @@ class MakersBnb < Sinatra::Base
     booking = Booking.get(params[:booking_id])
     booking.confirmed = :rejected
     booking.save
+    guest = User.first(id: booking.guest_id)
+    if guest.phone_number
+      Phone.send_message(guest.phone_number,"I'm sorry, your booking request has been denied!")
+    end
     redirect '/booking/rejected'
   end
-
+  
   get '/booking/rejected' do
     erb :'booking/rejected'
   end
