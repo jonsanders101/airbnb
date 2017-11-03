@@ -55,11 +55,11 @@ div#access-ribbon {
   font-family: 'Roboto Slab', sans-serif;
   color: #ff5a5f;
   border: 2px solid #ff5a5f;
-  width: 140px;
-  height: 45px;
+  width: 180px;
+  height: 60px;
   margin: 2px 2px 2px 2px;
   text-align: center;
-  font-size: 14px;
+  font-size: 20px;
   border-radius: 32px;
   outline: none
 }
