@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -6,6 +7,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+=======
+<link rel="stylesheet" href="/main.css"/>
+>>>>>>> working-branch
 <body>
 
 <div class="container">
@@ -66,5 +70,10 @@
     <form action="/spaces/requests">
       <input type="submit" value="View requests" class='button'>
     </form>
+    <% if current_user %>
+      <form method="get" action="/users/<%= current_user.id %>">
+        <input type="submit" value="My Account">
+      </form>
+    <% end %>
   </div>
 </body>

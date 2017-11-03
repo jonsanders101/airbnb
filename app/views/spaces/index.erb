@@ -1,24 +1,43 @@
+<script type="text/javascript">
+var initializeDatepicker = function(id, invalidDates = []) {
+  console.log(invalidDates);
+  $('input[id="' + id + '"]').daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true,
+      locale: {
+            format: 'DD/MM/YYYY'
+        },
+      isInvalidDate: function(date) {
+        if (invalidDates.indexOf(date.format('DD/MM/YYYY')) > -1) {
+            return true;
+        } else {
+            return false;
+        }
+      },
+    });
+  }
+</script>
+
 <h1> All available properties </h1>
 <ul id='spaces_container'>
   <% spaces.each do |space| %>
     <li>
       <div class='space_container'>
-        <p><%= space.name %></p>
+        <p><a href='/spaces/<%= space.id %>'><%= space.name %></a></p>
         <p><%= space.description %></p>
         <p>£<%= space.price %> per night</p>
+        <p>Request a booking:</p>
+        <form id='booking-request' action='/booking' method='post'>
+          <input type="hidden" name='space_name' value="<%= space.name %>">
+          <input type="hidden" name='space_id' value="<%= space.id %>">
+          <input type="text" name='booking-date' id="<%= space.id %>">
+          <script type="text/javascript">
+            var invalidDates = <%= space.bookings.select{|booking| booking.confirmed == :confirmed}.map(&:date).map{|date| date.strftime("%d/%m/%Y")} %>;
+            initializeDatepicker(<%= space.id %>, invalidDates);
+          </script>
+          <input type='submit' Value='Request Booking'>
+      </form>
       </div>
     </li>
   <% end %>
 </ul>
-
-
-<h2>Request a Booking</h2>
-<form id='booking-request' action='/booking' method='post'>
-  <select name='spaces'>
-    <% spaces.each do |space| %>
-        <option name='space-name'><%= space.name %></option>
-    <% end %>
-  </select>
-  <input type='date' name='booking-date'>
-  <input type='submit' Value='Request Booking'>
-</form>

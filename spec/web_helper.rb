@@ -1,13 +1,11 @@
 def sign_up(username: 'Test user',
             email: 'test@test.com',
-            phone_number: '07496950988',
             password: 'Test password',
             password_confirmation: 'Test password')
   visit '/users/new'
   within(:css, 'form#signup-form') do
     fill_in :username, with: username
     fill_in :email, with: email
-    fill_in :phone_number, with: phone_number
     fill_in :password, with: password
     fill_in :password_confirmation, with: password_confirmation
     click_button 'Sign up'
@@ -26,13 +24,11 @@ end
 
 def second_user_sign_up(username: 'Second user',
   email: 'second@test.com',
-  phone_number: '07496950989',
   password: 'Second password',
   password_confirmation: 'Second password')
   visit '/users/new'
   fill_in :username, with: username
   fill_in :email, with: email
-  fill_in :phone_number, with: phone_number
   fill_in :password, with: password
   fill_in :password_confirmation, with: password_confirmation
   click_button 'Sign up'
@@ -48,28 +44,9 @@ def post_listing(space = 'test space', description = 'test description', price =
   end
 end
 
-def create_space
-  Space.create(name: 'test space',
-              description: 'test description',
-              price: 500,
-              host_id: 1)
-end
-
-def create_booking
-  Booking.create(guest_id: 1,
-                space_id: 1,
-                date: Date.today)
-end
-
-def create_space_2
-  Space.create(name: 'test space 2',
-              description: 'test description 2',
-              price: 500,
-              host_id: 2)
-end
-
-def create_booking_2
-  Booking.create(guest_id: 2,
-                space_id: 2,
-                date: Date.today)
+def create_booking(space = 'test space', date = Date.today)
+  visit '/'
+  click_button 'Book a trip!'
+  fill_in('booking-date', with: date)
+  click_button('Request Booking')
 end

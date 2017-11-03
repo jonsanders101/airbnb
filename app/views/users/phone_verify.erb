@@ -1,0 +1,17 @@
+<% if @error == true %>
+  Please try again, there was an error verifying your number!
+<% end %>
+
+<p>
+  You have been sent a verification code via SMS!
+<br>
+  When you receive it, enter the verification code below:
+</p>
+<br>
+<p>
+  Phone Number: <%= @phone_number %>
+</p>
+<form action="/users/phone/success" method="post">
+<input name="code" type="text">
+<input type="submit" value="Verify" placeholder="Enter Code">
+</form>

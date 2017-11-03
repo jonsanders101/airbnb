@@ -40,12 +40,7 @@ feature 'Logging in' do
     expect { sign_up(email: nil) }.not_to change(User, :count)
     expect(page).to have_content('Email must not be blank')
   end
-
-  scenario 'checks that phone number is provided' do
-    expect { sign_up(phone_number: nil) }.not_to change(User, :count)
-    expect(page).to have_content('Phone number must not be blank')
-  end
-
+  
   scenario 'username should appear on homepage following successful sign-up' do
     sign_up
     expect(current_path).to eq('/')
