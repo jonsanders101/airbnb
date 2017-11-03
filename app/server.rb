@@ -19,6 +19,11 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/' do
+    @display_space_names = ["Cheap Stays", "Luxury Soaps", "Thrills 'n' Spills"]
+    @space_names = Space.all.map { |space| space.name }
+    @display_space_names.length.times{ |i|
+      @display_space_names[i] = @space_names[i] unless @space_names[i] == nil
+    }
     erb :homepage
   end
 
