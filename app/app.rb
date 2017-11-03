@@ -76,7 +76,6 @@ end
       flash.now[:errors] = user.errors.full_messages
       erb :'users/sign_up'
     end
-    # params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
 
   get '/sign-up' do
@@ -137,73 +136,6 @@ end
   get "/spaces/:id" do
     @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
-  end
-
-  get "/users/:id" do
-    erb :'users/account'
-  end
-
-  get "/users/phone/new" do
-    erb :'users/phone'
-  end
-
-  post '/users/phone/verify' do
-    @phone_number = Sanitize.clean(params[:phone_number])
-    if @phone_number.empty?
-      redirect to("/users/phone/verify/?error=1")
-    end
-
-    begin
-      if @error == false
-        current_user.phone_number = @phone_number
-        if current_user.phone_verified == true
-          @phone_number = url_encode(@phone_number)
-          redirect to("/users/phone?phone_number=#{@phone_number}&verified=1")
-        end
-        # binding.pry
-        totp = ROTP::TOTP.new("drawtheowl")
-        code = totp.now
-        current_user.code = code
-        current_user.save
-        @client.messages.create(
-          :from => @twilio_number,
-          :to => @phone_number,
-          :body => "Your verification code is #{code}")
-      end
-    erb :'users/phone_verify'
-    # rescue Twilio::REST::RestError
-    #   redirect to("/?error=2")
-    end
-  end
-
-  get '/users/phone/verify' do
-
-  end
-
-  post '/users/phone/success' do
-    # @phone_number = params[:phone_number]
-    @code = params[:code]
-    current_user.phone_number = @phone_number
-    if current_user.phone_verified == true
-      @verified = true
-    elsif current_user.nil? || current_user.code != @code
-      @phone_number = url_encode(@phone_number)
-      redirect to("/users/phone?phone_number=#{@phone_number}&error=1")
-    else
-      current_user.phone_verified = true
-      current_user.save
-    end
-    erb :'users/phone_success'
-  end
-
-  helpers do
-    def current_user
-      @current_user ||= User.get(session[:user_id])
-    end
-
-    def spaces
-      @spaces ||= Space.all
-    end
   end
 
   set :partial_template_engine, :erb

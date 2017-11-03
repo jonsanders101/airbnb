@@ -19,4 +19,53 @@ class MakersBnb < Sinatra::Base
     end
   end
 
+  get "/users/:id" do
+    erb :'users/account'
+  end
+
+  get "/users/phone/new" do
+    erb :'users/phone'
+  end
+
+  post '/users/phone/verify' do
+    @phone_number = Sanitize.clean(params[:phone_number])
+    if @phone_number.empty?
+      redirect to("/users/phone/verify/?error=1")
+    end
+
+    begin
+      if @error == false
+        current_user.phone_number = @phone_number
+        if current_user.phone_verified == true
+          @phone_number = url_encode(@phone_number)
+          redirect to("/users/phone?phone_number=#{@phone_number}&verified=1")
+        end
+        totp = ROTP::TOTP.new("drawtheowl")
+        code = totp.now
+        current_user.code = code
+        current_user.save
+        @client.messages.create(
+          :from => @twilio_number,
+          :to => @phone_number,
+          :body => "Your verification code is #{code}")
+      end
+    erb :'users/phone_verify'
+    end
+  end
+
+  post '/users/phone/success' do
+    @code = params[:code]
+    current_user.phone_number = @phone_number
+    if current_user.phone_verified == true
+      @verified = true
+    elsif current_user.nil? || current_user.code != @code
+      @phone_number = url_encode(@phone_number)
+      redirect to("/users/phone?phone_number=#{@phone_number}&error=1")
+    else
+      current_user.phone_verified = true
+      current_user.save
+    end
+    erb :'users/phone_success'
+  end
+
 end
