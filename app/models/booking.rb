@@ -6,8 +6,8 @@ class Booking
   include DataMapper::Resource
 
   property :id, Serial
-  property :guest_id, Integer
+  property :guest_id, Integer, required: true
   property :space_id, Integer
-  property :confirmed, Boolean, default: false
+  property :confirmed, Enum[:pending, :confirmed, :rejected], default: :pending
   property :date, Date
 end

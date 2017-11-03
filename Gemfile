@@ -1,6 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby "2.4.2"
+ruby '2.4.2'
 
 gem 'bcrypt'
 gem 'data_mapper'

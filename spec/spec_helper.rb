@@ -1,13 +1,13 @@
 ENV['RACK_ENV'] ||= 'development'
 
-require "simplecov"
-require "simplecov-console"
-require "capybara/rspec"
+require 'simplecov'
+require 'simplecov-console'
+require 'capybara/rspec'
 
 require 'data_mapper'
 require 'database_cleaner'
-require "./app/app.rb"
-require "web_helper"
+require './app/app.rb'
+require 'web_helper'
 require_relative '../app/models/user'
 
 Capybara.app = MakersBnb

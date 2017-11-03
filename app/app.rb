@@ -1,8 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 
-require 'sinatra/base'
 require_relative 'data_mapper_setup'
-require 'sinatra/partial'
+require 'sinatra/base'
 require 'sinatra/flash'
 require 'sinatra/multi_route'
 require 'twilio-ruby'
@@ -12,16 +11,19 @@ require 'rotp'
 require 'pry'
 
 include ERB::Util
+require 'sinatra/partial'
+
+require_relative 'server'
+require_relative 'controllers/booking'
+require_relative 'controllers/sessions'
+require_relative 'controllers/spaces'
+require_relative 'controllers/users'
+
+
 include DataMapperSetup
 data_mapper_setup
 
 class MakersBnb < Sinatra::Base
-  register Sinatra::Partial
-  use Rack::MethodOverride
-  register Sinatra::Flash
-
-  enable :sessions
-  set :session_secret, 'super secret'
 
   before do
     @twilio_number = ENV['TWILIO_NUMBER']
