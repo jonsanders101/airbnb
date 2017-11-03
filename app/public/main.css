@@ -91,8 +91,7 @@ input {
   height: 18px;
   vertical-align: middle;
 }
-
-
+/*
 #wrapper {
   height: 312px;
   width: auto 0;
@@ -109,76 +108,28 @@ input {
   font-size: 2em;
   font-family: 'Montserrat', sans-serif;
   text-shadow: 2px 2px #555;
+  animation-name: captions;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+#space2 {
+  animation-delay: 2s
+}
+
+#space3 {
+  animation-delay: 4s
+}
+
+#space4 {
+  animation-delay: 6s
+}
+
+@keyframes captions {
+  0% {font-size: 100%; opacity: 1;}
+  20% {font-size: 0%; opacity: 0;}
+  100% {font-size: 100%; opacity: 1;}
 }
 
 #slideshow {
   background: url(http://lab.mthibault.ca/external/img/roto01.jpg) no-repeat; /* this default image will show where browsers unable to process the [animation] function */
-  background-size: contain;
-  position: relative;
-  width: auto 0;
-  height: 312px;
-  /* animation */
-  -webkit-animation: slider 10s infinite ease-in-out;
-  -webkit-animation-direction: alternate;
-  animation: slider 10s infinite ease-in-out;
-  animation-direction: alternate;
-}
-
-@-webkit-keyframes slider {
-  0% {
-    background: url(http://lab.mthibault.ca/external/img/roto01.jpg);
-  }
-  25% {
-    background: url(http://lab.mthibault.ca/external/img/roto02.jpg);
-  }
-  50% {
-    background: url(http://lab.mthibault.ca/external/img/roto03.jpg);
-  }
-  100% {
-    background: url(http://lab.mthibault.ca/external/img/roto04.jpg);
-  }
-}
-
-@keyframes slider {
-  0% {
-    background: url(http://lab.mthibault.ca/external/img/roto01.jpg);
-  }
-  25% {
-    background: url(http://lab.mthibault.ca/external/img/roto02.jpg);
-  }
-  50% {
-    background: url(http://lab.mthibault.ca/external/img/roto03.jpg);
-  }
-  100% {
-    background: url(http://lab.mthibault.ca/external/img/roto04.jpg);
-  }
-}
-
-.logo {
-	text-align:right;
-}
-
-@media screen and (max-width: 768px) {
-  #wrapper {
-    width: 90%;
-	margin:1em auto;
-  }
-
-  #wrapper p {
- font-size: 1.25em;
- letter-spacing:0.15em;
- text-shadow: 2px 1px #000;
- overflow:hidden;
- }
-
-  #slideshow {
-    width: 100%;
-    height: auto;
-    background-size: cover;
-  }
-  #slideshow img {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  .logo {text-align:center;}
-}
