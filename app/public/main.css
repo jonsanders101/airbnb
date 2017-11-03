@@ -3,6 +3,21 @@ body {
   color: #ff5a5f;
 }
 
+.carousel-image {
+  width: auto;
+  height: 300px;
+  max-height: 300px;
+}
+
+.container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
 div#header {
   width: 100%;
   height: 50px;
