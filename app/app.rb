@@ -43,21 +43,6 @@ class MakersBnb < Sinatra::Base
     erb :homepage
   end
 
-  post '/users' do
-    user = User.create(username: params[:username],
-                       email: params[:email],
-                       phone_number: params[:phone_number],
-                       password: params[:password],
-                       password_confirmation: params[:password_confirmation])
-    if user.save
-      session[:user_id] = user.id
-      redirect '/'
-    else
-      flash.now[:errors] = user.errors.full_messages
-      erb :'users/sign_up'
-    end
-  end
-
   set :partial_template_engine, :erb
   enable :partial_underscores
 
