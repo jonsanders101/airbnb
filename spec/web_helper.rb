@@ -48,28 +48,49 @@ def post_listing(space = 'test space', description = 'test description', price =
   end
 end
 
-def create_space
-  Space.create(name: 'test space',
-              description: 'test description',
-              price: 500,
-              host_id: 1)
+def create_booking(space = 'test space', date = Date.today)
+  visit '/'
+  click_button 'Book a trip!'
+  select space, from: 'spaces'
+  fill_in('booking-date', with: date)
+  click_button('Request Booking')
 end
 
-def create_booking
-  Booking.create(guest_id: 1,
-                space_id: 1,
-                date: Date.today)
-end
-
-def create_space_2
-  Space.create(name: 'test space 2',
-              description: 'test description 2',
-              price: 500,
-              host_id: 2)
-end
-
-def create_booking_2
-  Booking.create(guest_id: 2,
-                space_id: 2,
-                date: Date.today)
-end
+# def create_space
+#   Space.create(name: 'test space',
+#               description: 'test description',
+#               price: 500,
+#               host_id: 1)
+# end
+#
+# def create_booking
+#   Booking.create(guest_id: 1,
+#                 space_id: 1,
+#                 date: Date.today)
+# end
+#
+# def create_space_2
+#   Space.create(name: 'test space 2',
+#               description: 'test description 2',
+#               price: 500,
+#               host_id: 2)
+# end
+#
+# def create_booking_2
+#   Booking.create(guest_id: 2,
+#                 space_id: 2,
+#                 date: Date.today)
+# end
+#
+# def create_space_3
+#   Space.create(name: 'test space 3',
+#               description: 'test description 3',
+#               price: 500,
+#               host_id: 3)
+# end
+#
+# def create_booking_3
+#   Booking.create(guest_id: 3,
+#                 space_id: 3,
+#                 date: Date.today)
+# end
