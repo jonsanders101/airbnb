@@ -82,27 +82,6 @@ end
     erb :'users/sign_up'
   end
 
-  get '/spaces/new' do
-    erb :'spaces/new'
-  end
-
-  post "/spaces" do
-    space = Space.create(name: params[:space],
-                        host_id: session[:user_id],
-                        description: params[:description],
-                        price: params[:price])
-    redirect "/spaces"
-  end
-
-  get "/spaces" do
-    erb :'spaces/index'
-  end
-
-  get "/spaces/:id" do
-    @space = Space.get(params['id'].to_i)
-    erb :'spaces/space'
-  end
-
   set :partial_template_engine, :erb
   enable :partial_underscores
 
