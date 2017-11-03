@@ -7,17 +7,17 @@
   <body>
     <h1> Confirm requests for your spaces on Makers BnB!</h1>
 
-    <form id="my-bookings" name="my-bookings" action="/booking/confirm" method="post">
+    <form id='my-bookings' name='my-bookings' action='/booking/confirm' method='post'>
 
       <% @my_requests.each do |request_id, request|%>
       <label>
         <%= @my_spaces[request['space_id']] %>
         <%= @my_guests[request['guest_id']] %>
         <%= request['date'] %></label>
-      <input id="approve-request-<%= request['id'] %>" type="submit" value="Approve request">
-      <br>
+      <input type='submit' value='Approve' id='<%=request['id']%>' name='approve'>
       <% end %>
     </form>
+
 
   </body>
 </html>

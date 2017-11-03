@@ -13,7 +13,18 @@ div#header {
   font-family: 'Montserrat', sans-serif;
 }
 
+div#logo {
+  position: absolute;
+  text-align: left
+  height: 50px;
+  display: inline-block;
+}
+
 div#home-container {
+  text-align: center;
+  color: rgb(49, 49, 49);
+  width: 75%;
+  margin: auto;
   padding-top: 100px;
 }
 
@@ -29,40 +40,54 @@ div#welcome-message {
   padding-right: 15px;
 }
 
-
 div#access-ribbon {
+  margin-top: 35px;
+  width: 100%;
+  position: relative;
+  display: inline-block;
   text-align: right;
   font-size: 12px;
 }
 
-#button {
-  text-align: center;
-}
-
-.home-button {
-  background-color: #ffffff;
+.button, .log-in-button, .log-out-button {
+  display: inline-block;
+  background-color: transparent;
+  font-family: 'Roboto Slab', sans-serif;
   color: #ff5a5f;
-  border: 3px solid #ff5a5f;
-  border-radius: 15px;
-  width: 300px;
-	height: 70px;
-  padding: 8px 8px;
+  border: 2px solid #ff5a5f;
+  width: 180px;
+  height: 60px;
+  margin: 2px 2px 2px 2px;
   text-align: center;
-  text-decoration: none;
-  font-size: 40px;
-  outline: none;
-  text-align: center;
-  opacity: 20%;
+  font-size: 20px;
+  border-radius: 32px;
+  outline: none
 }
 
-.home-button:active {
+.button:hover, .log-in-button:hover, .log-out-button:hover {
+  background-color: #ff5a5f;
+  color: white;
+  background-position-y: 1px;
+  cursor: pointer;
+}
+
+.button:active, .log-in-button:active, .log-out-button:active {
+  transform: translateY(1px);
   transform: scale(1.1);
-  background-color: white;
-  color: #ff5a5f;
+  background-color: #ff5a5f;
+  color: white;
   border-color: #ff5a5f;
 }
 
-.home-button:hover {
-  background-color: #ff5a5f;
-  color: white;
+.log-in-button, .log-out-button {
+  width: 75px;
+  height: 22px;
+  font-size: 12px;
+  border: 1px solid #ff5a5f;
+}
+
+input {
+  width: 140px;
+  height: 18px;
+  vertical-align: middle;
 }

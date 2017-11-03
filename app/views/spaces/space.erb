@@ -1,8 +1,8 @@
 
 <% if @space && !@space.bookings.empty? %>
-  <div class="reservations_list">
-    <% @space.bookings.select(&:confirmed).each do |booking| %>
-      <p>reserved on <%= booking.date.strftime("%d/%m/%Y") %></p>
+  <div class='reservations_list'>
+    <% @space.bookings.select{ |booking| booking.confirmed == :confirmed}.each do |booking| %>
+      <p>reserved on <%= booking.date.strftime('%d/%m/%Y') %></p>
     <% end %>
   </div>
 <% end %>

@@ -2,8 +2,8 @@ def sign_up(username: 'Test user',
             email: 'test@test.com',
             password: 'Test password',
             password_confirmation: 'Test password')
-  visit '/sign-up'
-  within(:css, "form#signup-form") do
+  visit '/users/new'
+  within(:css, 'form#signup-form') do
     fill_in :username, with: username
     fill_in :email, with: email
     fill_in :password, with: password
@@ -11,6 +11,16 @@ def sign_up(username: 'Test user',
     click_button 'Sign up'
   end
 end
+
+def log_in(email = 'test@test.com', password = 'Test password')
+  visit '/'
+    within(:css, 'div#access-ribbon') do
+      fill_in('email', with: email)
+      fill_in('password', with: password)
+      click_button('Log in')
+    end
+end
+
 
 def second_user_sign_up(username: 'Second user',
   email: 'second@test.com',
@@ -27,12 +37,12 @@ def second_user_sign_up(username: 'Second user',
 end
 
 def post_listing(space = 'test space', description = 'test description', price = 1000)
-  click_button("list-space")
-  within("//form[@id='listing_form']") do
-    fill_in "space", with: space
-    fill_in "description", with: description
-    fill_in "price", with: price
-    click_button("complete-listing")
+  click_button('list-space')
+  within('//form[@id="listing_form"]') do
+    fill_in 'space', with: space
+    fill_in 'description', with: description
+    fill_in 'price', with: price
+    click_button('complete-listing')
   end
 end
 
@@ -46,5 +56,18 @@ end
 def create_booking
   Booking.create(guest_id: 1,
                 space_id: 1,
+                date: Date.today)
+end
+
+def create_space_2
+  Space.create(name: 'test space 2',
+              description: 'test description 2',
+              price: 500,
+              host_id: 2)
+end
+
+def create_booking_2
+  Booking.create(guest_id: 2,
+                space_id: 2,
                 date: Date.today)
 end
