@@ -17,7 +17,28 @@ Our task is to make a clone of Air B'n'B.
 * **Server-side**: Ruby, Sinatra
 * **Database**: PostgreSQL
 * **ORM**: DataMapper
-* **Testing**: Capybara
+* **Testing**: RSPEC, Capybara
+
+## How to use Makers BnB
+
+To use this website start by cloning this repository to your local machine and running bundle in your command line.
+````
+git clone git@github.com:jonsanders101/airbnb.git
+bundle
+````
+
+Once you have done this, run 'rackup' in your command line and you can explore the website as you please!
+
+### How to use Twilio
+
+In order to benefit from the messaging functionality we have created on our website, you will need to sign up for a Twilio trial account. Once you have done this, you will be provided with an 'Account SID', an 'authorisation token' and a 'Twilio number'. You will need to store these as environment variables on your machine. You can do this by running the following commands in your terminal, replacing the dummy strings with your account credentials.
+
+````
+export account_sid=ACxxxxxxxxxxxxxxxxxxxxxxxx
+export auth_token=yyyyyyyyyyyyyyyyyyyyyyyyy
+export twilio_number=+12121234567
+````
+Once you have done this, restart your terminal and you're ready to start receiving text notifications!
 
 ## User Stories
 
@@ -81,36 +102,8 @@ The following user stories define the additional functionality we added once we 
 
 ````
 As a user
-So that I know my signup was successful
-I want to receive an email confirming my signup
-
-As a host
-So that I know my space has been listed
-I want to receive an email confirming my listing
-
-As a host
-So that I know the updates to my space were successful
-I want to receive an email confirming my updates
-
-As a host
-So that I am aware of outstanding booking requests
-I want to receive an email when a guest requests to book my space
-
-As a guest
-So that I know if my booking request is successful
-I want to receive an email when my host accepts my request
-
-As a guest
-So that I know if my booking request was denied
-I want to receive an email when my host rejects my request
-
-As a user
 So that I can be aware of happenings on my account
-I want to be able to provide a phone number upon signup
-
-As a host
-So that I am aware of outstanding booking requests
-I want to receive a text message when a guest requests to book my space
+I want to be able to provide a phone number for my account
 
 As a guest
 So that I know if my booking request is successful
@@ -119,20 +112,4 @@ I want to receive a text message when my host accepts my request
 As a guest
 So that I know if my booking request was denied
 I want to receive a text message when my host rejects my request
-
-As a guest
-So that I can communicate efficiently with my host
-I want to be able to use Makers BnB chat once my booking is confirmed
-
-As a host
-So that I can communicate efficiently with my guest
-I want to be able to use Makers BnB chat once I have confirmed their request
-
-As a guest
-So that I can pay for my booking
-I want to be able to use Stripe to make the payment
-
-As a host
-So that I can receive payment for my space
-I want to be able to use Stripe to view the payment
 ````
