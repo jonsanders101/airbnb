@@ -2,9 +2,9 @@ class MakersBnb < Sinatra::Base
 
   post '/booking' do
     if session[:user_id]
-      space = Space.first(name: params[:'spaces'])
+      space = Space.get(params[:space_id])
       booking = Booking.create(guest_id: session[:user_id],
-                                space_id: (Space.first(name: params[:'spaces'])).id,
+                                space_id: params[:space_id],
                                 date: params[:'booking-date'])
       space.bookings << booking
       space.save

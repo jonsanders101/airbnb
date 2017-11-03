@@ -47,7 +47,6 @@ end
 def create_booking(space = 'test space', date = Date.today)
   visit '/'
   click_button 'Book a trip!'
-  select space, from: 'spaces'
   fill_in('booking-date', with: date)
   click_button('Request Booking')
 end
