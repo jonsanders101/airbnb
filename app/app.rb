@@ -98,41 +98,6 @@ end
     erb :'spaces/index'
   end
 
-  post "/booking" do
-    space = Space.first(name: params[:'spaces'])
-    booking = Booking.create(guest_id: session[:user_id],
-                              space_id: (Space.first(name: params[:'spaces'])).id,
-                              date: params[:'booking-date'])
-    space.bookings << booking
-    space.save
-    redirect "/booking/successful" if booking
-  end
-
-  get "/booking/successful" do
-    erb :'booking/successful'
-  end
-
-  get '/spaces/requests' do
-
-    @my_spaces = {}
-    Space.all(:host_id => session[:user_id]).each { |space| @my_spaces[space.id] = space.name }
-    @requests = Booking.all(:confirmed => false)
-    @my_requests = {}
-    @my_guests = {}
-
-    @requests.each do |request|
-      if @my_spaces.has_key?(request.space_id)
-        @my_requests[request['id']] = request
-        # TODO: need to have booking populated with guest_id
-        guest = User.get(:id => request['guest_id'])
-        guest = User.first()
-        @my_guests[guest.id] = guest['username'] unless @my_guests.has_key?(request['guest_id'])
-      end
-    end
-
-    erb :'booking/all'
-  end
-
   get "/spaces/:id" do
     @space = Space.get(params['id'].to_i)
     erb :'spaces/space'
