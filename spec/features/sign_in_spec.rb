@@ -11,12 +11,14 @@ feature 'When I log in' do
       expect(page).to have_current_path '/'
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      within(:css, 'form#login-form') do
-        click_button('Log in')
+      within(:css, "form#login-form") do
+        click_button('Log In')
       end
-      click_button('Log out')
-      expect(page).to have_current_path '/'
-      expect(page).to_not have_content 'Hello, Test user'
+      within(:css, "form#signout-form") do
+        click_button('Log Out')
+      end
+      expect(page).to have_current_path "/"
+      expect(page).to_not have_content "Hello, Test user"
     end
 
     scenario 'I can log in' do
@@ -25,7 +27,7 @@ feature 'When I log in' do
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
       within(:css, 'form#login-form') do
-        click_button('Log in')
+        click_button('Log In')
       end
       expect(page).to have_current_path '/'
       expect(page).to have_content 'Hello, testusername'

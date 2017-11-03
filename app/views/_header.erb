@@ -7,9 +7,9 @@
       Hello, <i><%= current_user.username %></i>.
     </div>
 
-      <form method='post' class='ribbon-form' action='/sessions'>
-        <input type='hidden' name='_method' value='delete'>
-        <input type='submit' class='ribbon-button' value='Log out'>
+      <form method="post" class="ribbon-form" action="/sessions"id="signout-form">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Log Out" class="log-out-button">
       </form>
     <% else %>
 
@@ -20,9 +20,11 @@
       <label for='password'>
         Password: <input name='password' type='password'>
       </label>
-      <input type='submit' value='Log in'>
+      <input type='submit' value='Log In' class="log-in-button">
     </form>
       or
-      <a href='/users/new' id='sign-up'>Sign Up for an account</a>
+    <form class="ribbon-form" action="/users/new">
+      <input type="submit" value="Sign Up" class="log-in-button">
+    </form>
     <% end %>
   </div>

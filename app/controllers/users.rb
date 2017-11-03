@@ -17,7 +17,6 @@ class MakersBnb < Sinatra::Base
       flash[:errors] = user.errors.full_messages
       redirect '/'
     end
-    # params[:password] == params[:password_confirmation] ? (redirect '/') : (redirect '/sign-up')
   end
 
 end
