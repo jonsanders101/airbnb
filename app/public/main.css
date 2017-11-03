@@ -36,6 +36,7 @@ div#notifications {
 }
 
 div#welcome-message {
+  font-size: 1.3em
   display: inline-block;
   padding-right: 15px;
 }
