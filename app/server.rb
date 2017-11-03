@@ -9,11 +9,7 @@ class MakersBnb < Sinatra::Base
   enable :partial_underscores
 
   before do
-    @twilio_number = ENV['TWILIO_NUMBER']
-    @account_number = ENV['ACCOUNT_SID']
-    @auth_token = ENV['AUTH_TOKEN']
-
-    @client = Twilio::REST::Client.new @account_number, @auth_token
+    @phone = Phone.new
 
     if params[:error].nil?
       @error =false

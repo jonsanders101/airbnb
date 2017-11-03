@@ -1,3 +1,5 @@
+require_relative '../phone'
+
 class MakersBnb < Sinatra::Base
 
   get '/users/new' do
@@ -40,14 +42,8 @@ class MakersBnb < Sinatra::Base
           @phone_number = url_encode(@phone_number)
           redirect to("/users/phone?phone_number=#{@phone_number}&verified=1")
         end
-        totp = ROTP::TOTP.new("drawtheowl")
-        code = totp.now
-        current_user.code = code
-        current_user.save
-        @client.messages.create(
-          :from => @twilio_number,
-          :to => @phone_number,
-          :body => "Your verification code is #{code}")
+
+        Phone.send_verification(current_user)
       end
     erb :'users/phone_verify'
     end
